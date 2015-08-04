@@ -65,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             let loginViewController = PFLogInViewController()
             loginViewController.fields = .Facebook
             loginViewController.facebookPermissions = ["user_friends"]
-            loginViewController.logInView?.backgroundColor = UIColor(patternImage: UIImage(named: "ss.jpg")!)
+            loginViewController.logInView?.backgroundColor = UIColor(patternImage: UIImage(named: "img.jpg")!)
           
             loginViewController.delegate = parseLoginHelper
             loginViewController.signUpController?.delegate = parseLoginHelper
@@ -190,6 +190,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     
     func applicationDidBecomeActive(application: UIApplication) {
         FBSDKAppEvents.activateApp()
+        
     }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {

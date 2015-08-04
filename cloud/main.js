@@ -20,3 +20,24 @@ Parse.Cloud.define('sendMessage', function(request, response) {
         response.error(error)
     });
 });
+
+Parse.Cloud.define("sendRequest", function(request, response) {
+                   Parse.Cloud.useMasterKey();
+                   var userId = request.params.userId;
+                   var location = request.params.location;
+                   var message = request.params.message
+                   
+                   var User = Parse.Object.extend('_User'),
+                   user = new User({ objectId: userId });
+                   
+                   var currentUser = request.user;
+                   
+                   var Request = Parse.Object.extend('MeetingRequest'),
+                   requests = new Request();
+                    requests.set("location", location);
+                   requests.set("message", message)
+                   requests.set("toUser", user);
+                   requests.set("fromUser", currentUser);
+                   requests.save();
+                   response.success();
+});

@@ -59,7 +59,9 @@ class ParseHelper: NSObject {
 
     static func searchUsers(searchText: String, completionBlock: PFArrayResultBlock)
         -> PFQuery {
-            let query = User.query()!.whereKey(ParseHelper.ParseUserUsername,
+            let query = User.query()!
+            
+            query.whereKey(ParseHelper.ParseUserUsername,
                 matchesRegex: searchText, modifiers: "i")
             
             query.whereKey(ParseHelper.ParseUserUsername,
@@ -71,5 +73,6 @@ class ParseHelper: NSObject {
             query.findObjectsInBackgroundWithBlock(completionBlock)
             
             return query
-    }
+ }
 }
+

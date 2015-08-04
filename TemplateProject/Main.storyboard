@@ -5,6 +5,53 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Notification View Controller-->
+        <scene sceneID="O6c-6u-oRq">
+            <objects>
+                <viewController id="kBd-5M-ghR" customClass="NotificationViewController" customModule="iStalk" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EOM-Gy-wvD"/>
+                        <viewControllerLayoutGuide type="bottom" id="l5M-Cw-9Ev"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7Dn-aQ-yCH">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="uDE-TX-zmG">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="6k2-Mn-oRc" customClass="NotificationTableViewCell" customModule="iStalk" customModuleProvider="target">
+                                        <rect key="frame" x="5" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6k2-Mn-oRc" id="I8l-5w-vBu">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Request" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lj6-8e-WyY">
+                                                    <rect key="frame" x="22" y="11" width="64" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="uDE-TX-zmG" firstAttribute="top" secondItem="7Dn-aQ-yCH" secondAttribute="top" id="0Oa-G5-ZHe"/>
+                            <constraint firstAttribute="trailing" secondItem="uDE-TX-zmG" secondAttribute="trailing" id="Baa-hF-VeG"/>
+                            <constraint firstItem="l5M-Cw-9Ev" firstAttribute="top" secondItem="uDE-TX-zmG" secondAttribute="bottom" id="dyx-PV-HBG"/>
+                            <constraint firstItem="uDE-TX-zmG" firstAttribute="leading" secondItem="7Dn-aQ-yCH" secondAttribute="leading" id="tiD-A8-Kv8"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NlX-FL-jsf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2007" y="-458"/>
+        </scene>
         <!--Friend Finder View Controller-->
         <scene sceneID="3YG-re-cEX">
             <objects>
@@ -131,8 +178,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="3HW-yC-uHt">
                         <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" title="Notifs" id="vrb-t9-Ine">
+                            <connections>
+                                <segue destination="kBd-5M-ghR" kind="show" id="VQf-Z0-YQf"/>
+                            </connections>
+                        </barButtonItem>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="5EA-Sr-top">
-                            <rect key="frame" x="30" y="8" width="540" height="29"/>
+                            <rect key="frame" x="81" y="8" width="438" height="29"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="All friends"/>
@@ -257,40 +309,6 @@
             </objects>
             <point key="canvasLocation" x="3531" y="1030"/>
         </scene>
-        <!--Game View Controller-->
-        <scene sceneID="RzH-Rx-EHF">
-            <objects>
-                <viewController id="4EH-2U-kd1" customClass="GameViewController" customModule="iStalk" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="x0V-5b-r6h"/>
-                        <viewControllerLayoutGuide type="bottom" id="zHY-bi-Dik"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="CpJ-X5-ZoQ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SXQ-uR-BUg">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
-                                <animations/>
-                            </imageView>
-                        </subviews>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="SXQ-uR-BUg" firstAttribute="leading" secondItem="CpJ-X5-ZoQ" secondAttribute="leadingMargin" constant="-16" id="7WN-Fe-IYO"/>
-                            <constraint firstItem="zHY-bi-Dik" firstAttribute="top" secondItem="SXQ-uR-BUg" secondAttribute="bottom" id="Xtw-mo-bh7"/>
-                            <constraint firstItem="SXQ-uR-BUg" firstAttribute="top" secondItem="x0V-5b-r6h" secondAttribute="bottom" id="mQa-fZ-inO"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="SXQ-uR-BUg" secondAttribute="trailing" constant="-16" id="pvU-yw-c3E"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="mainImageView" destination="SXQ-uR-BUg" id="KEb-o4-5dH"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bQD-sf-7EZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4125" y="286"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="oq8-WK-iEL">
             <objects>
@@ -341,7 +359,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="TAl-r0-8kK">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="TAl-r0-8kK">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </mapView>
                         </subviews>
@@ -353,21 +371,27 @@
                             <constraint firstAttribute="trailing" secondItem="TAl-r0-8kK" secondAttribute="trailing" id="lC5-ha-nOy"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="eax-FG-CLs">
                         <nil key="title"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="LRk-Rz-uBi"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="LRk-Rz-uBi">
+                            <connections>
+                                <action selector="showSearchBar:" destination="JQT-pK-6DI" id="nQq-9t-bPr"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="mapView" destination="TAl-r0-8kK" id="WfQ-PK-UHM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hiz-i7-p8P" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2587" y="1741"/>
+            <point key="canvasLocation" x="2533" y="1781"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="EdH-tr-UpA"/>
+        <segue reference="NXd-Vr-dZL"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>

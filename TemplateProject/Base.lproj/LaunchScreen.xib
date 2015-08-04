@@ -9,7 +9,21 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="1VS-4E-lvk">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="eyn-ZM-LG0">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                </imageView>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="eyn-ZM-LG0" firstAttribute="top" secondItem="1VS-4E-lvk" secondAttribute="top" id="IuV-U0-ZBq"/>
+                <constraint firstAttribute="trailing" secondItem="eyn-ZM-LG0" secondAttribute="trailing" id="dSG-RQ-6Cz"/>
+                <constraint firstAttribute="bottom" secondItem="eyn-ZM-LG0" secondAttribute="bottom" id="em6-C5-2Tn"/>
+                <constraint firstItem="eyn-ZM-LG0" firstAttribute="leading" secondItem="1VS-4E-lvk" secondAttribute="leading" id="spE-1B-pEI"/>
+            </constraints>
         </view>
     </objects>
+    <resources>
+        <image name="img.jpg" width="762" height="1049"/>
+    </resources>
 </document>

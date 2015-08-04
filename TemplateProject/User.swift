@@ -52,6 +52,7 @@ class User : PFUser, PFSubclassing {
             }
         }
     }
+
     
     func addFriend(friend: User ){
         let add = PFObject(className: "Friends")

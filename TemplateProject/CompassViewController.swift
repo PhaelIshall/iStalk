@@ -63,6 +63,9 @@ class CompassViewController: UIViewController, UITableViewDelegate{
                 if (User.currentUser()?.Coordinate.distanceInKilometersTo(parseUser.Coordinate) < 0.01) {
                     view.backgroundColor = UIColor.greenColor()
                 }
+                else if (User.currentUser()?.Coordinate.distanceInKilometersTo(parseUser.Coordinate) < 0.05) {
+                    view.backgroundColor = UIColor.orangeColor()
+                }
                 else {
                     view.backgroundColor = UIColor.redColor()
                 }
@@ -96,6 +99,8 @@ class CompassViewController: UIViewController, UITableViewDelegate{
         }
         if (segue.identifier == "openMap") {
             let pickerViewController = segue.destinationViewController as! PickerViewController
+            pickerViewController.selectedFriend = parseUser
+            
             
         }
     }

@@ -20,19 +20,24 @@
 		4374900EF9096E10E5204D51 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7E537EBF49E5B656BF9DB8B /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		6144C0601B5E95F3007AAFEA /* images.png in Resources */ = {isa = PBXBuildFile; fileRef = 6144C05E1B5E95F3007AAFEA /* images.png */; };
 		6144C0631B5E960A007AAFEA /* ss.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6144C0621B5E960A007AAFEA /* ss.jpg */; };
+		6174CF741B6FCE59003673FB /* GooglePlacesAutocomplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6174CF721B6FCE59003673FB /* GooglePlacesAutocomplete.swift */; };
+		6174CF751B6FCE59003673FB /* GooglePlacesAutocomplete.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6174CF731B6FCE59003673FB /* GooglePlacesAutocomplete.xib */; };
 		617571671B67260800546093 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617571661B67260800546093 /* NavigationController.swift */; };
 		6175E68D1B6AB13A00DFC9C2 /* YelpAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6175E68C1B6AB13A00DFC9C2 /* YelpAPI.swift */; };
 		6175E68F1B6ABA4700DFC9C2 /* Business.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6175E68E1B6ABA4700DFC9C2 /* Business.swift */; };
 		6175E6911B6ABA6500DFC9C2 /* BusinessesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6175E6901B6ABA6500DFC9C2 /* BusinessesViewController.swift */; };
-		617FE0AD1B6459D000F73342 /* GooglePlacesAutocomplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617FE0AC1B6459D000F73342 /* GooglePlacesAutocomplete.swift */; };
-		617FE0B51B6459DD00F73342 /* GooglePlacesAutocomplete.xib in Resources */ = {isa = PBXBuildFile; fileRef = 617FE0B41B6459DD00F73342 /* GooglePlacesAutocomplete.xib */; };
-		617FE0BE1B645C4400F73342 /* Rightarrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 617FE0BD1B645C4400F73342 /* Rightarrow.png */; };
+		618D766F1B700D6E00FD040A /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618D766E1B700D6E00FD040A /* NotificationViewController.swift */; };
+		618D76771B7010FA00FD040A /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618D76761B7010FA00FD040A /* NotificationTableViewCell.swift */; };
 		61AA91FE1B608D1B00ECE9FE /* PushNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61AA91FD1B608D1B00ECE9FE /* PushNotificationController.swift */; };
 		61AD21B01B67CC0B0052B5C7 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61AD21AF1B67CC0B0052B5C7 /* PickerViewController.swift */; };
 		61CA19C81B5845F10000A5F5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CA19C71B5845F10000A5F5 /* Message.swift */; };
 		61CA19CA1B5849A80000A5F5 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CA19C91B5849A80000A5F5 /* MessageViewController.swift */; };
-		61CA19D21B5981F10000A5F5 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61CA19D11B5981F10000A5F5 /* FBSDKCoreKit.framework */; };
+		61CA3EA91B6EAD0F00ADC325 /* MeetingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CA3EA81B6EAD0F00ADC325 /* MeetingRequest.swift */; };
+		61CA3EB11B6EF65A00ADC325 /* img.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 61CA3EB01B6EF65A00ADC325 /* img.jpg */; };
+		61D4F6611B6BE14C00BA3BE8 /* Image003.png in Resources */ = {isa = PBXBuildFile; fileRef = 61D4F6601B6BE14C00BA3BE8 /* Image003.png */; };
+		61D4F6631B6BE3A600BA3BE8 /* Rightarrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 61D4F6621B6BE3A600BA3BE8 /* Rightarrow.png */; };
 		61D773361B5D6F6100DD9AA2 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61D773351B5D6F6100DD9AA2 /* WebKit.framework */; };
+		61EE081D1B7073F700C1F973 /* RequestMeeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61EE081C1B7073F700C1F973 /* RequestMeeting.swift */; };
 		624262C11B4460CB00005CE3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 624262B31B4460CB00005CE3 /* LaunchScreen.xib */; };
 		624262C31B4460CB00005CE3 /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624262B81B4460CB00005CE3 /* ErrorHandling.swift */; };
 		624262C41B4460CB00005CE3 /* ParseLoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624262B91B4460CB00005CE3 /* ParseLoginHelper.swift */; };
@@ -160,21 +165,26 @@
 		39B140481B5826B900FEF6E0 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../TemplateProject/AppDelegate.swift; sourceTree = "<group>"; };
 		6144C05E1B5E95F3007AAFEA /* images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = images.png; sourceTree = SOURCE_ROOT; };
 		6144C0621B5E960A007AAFEA /* ss.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ss.jpg; sourceTree = SOURCE_ROOT; };
+		6174CF711B6FCE59003673FB /* GooglePlacesAutocomplete.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GooglePlacesAutocomplete.h; path = "../../iStalkFacebook-FriendsNearby/GooglePlacesAutocomplete.h"; sourceTree = "<group>"; };
+		6174CF721B6FCE59003673FB /* GooglePlacesAutocomplete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GooglePlacesAutocomplete.swift; path = "../../iStalkFacebook-FriendsNearby/GooglePlacesAutocomplete.swift"; sourceTree = "<group>"; };
+		6174CF731B6FCE59003673FB /* GooglePlacesAutocomplete.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GooglePlacesAutocomplete.xib; path = "../../iStalkFacebook-FriendsNearby/GooglePlacesAutocomplete.xib"; sourceTree = "<group>"; };
 		617571661B67260800546093 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		6175E68C1B6AB13A00DFC9C2 /* YelpAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YelpAPI.swift; sourceTree = "<group>"; };
 		6175E68E1B6ABA4700DFC9C2 /* Business.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Business.swift; sourceTree = "<group>"; };
 		6175E6901B6ABA6500DFC9C2 /* BusinessesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessesViewController.swift; sourceTree = "<group>"; };
-		617FE0AC1B6459D000F73342 /* GooglePlacesAutocomplete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GooglePlacesAutocomplete.swift; path = "../../../Downloads/ios_google_places_autocomplete-master/GooglePlacesAutocomplete/GooglePlacesAutocomplete.swift"; sourceTree = "<group>"; };
-		617FE0B41B6459DD00F73342 /* GooglePlacesAutocomplete.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GooglePlacesAutocomplete.xib; path = "../../../Downloads/ios_google_places_autocomplete-master/GooglePlacesAutocomplete/GooglePlacesAutocomplete.xib"; sourceTree = "<group>"; };
-		617FE0B61B6459EE00F73342 /* GooglePlacesAutocomplete.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GooglePlacesAutocomplete.h; path = "../../../Downloads/ios_google_places_autocomplete-master/GooglePlacesAutocomplete/GooglePlacesAutocomplete.h"; sourceTree = "<group>"; };
-		617FE0BD1B645C4400F73342 /* Rightarrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Rightarrow.png; path = ../../../iStalk/Rightarrow.png; sourceTree = "<group>"; };
+		618D766E1B700D6E00FD040A /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		618D76761B7010FA00FD040A /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 		61AA91FD1B608D1B00ECE9FE /* PushNotificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationController.swift; sourceTree = "<group>"; };
 		61AD21AF1B67CC0B0052B5C7 /* PickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
 		61CA19C51B5845360000A5F5 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		61CA19C71B5845F10000A5F5 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Message.swift; path = ../TemplateProject/Message.swift; sourceTree = "<group>"; };
 		61CA19C91B5849A80000A5F5 /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
-		61CA19D11B5981F10000A5F5 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		61CA3EA81B6EAD0F00ADC325 /* MeetingRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeetingRequest.swift; sourceTree = "<group>"; };
+		61CA3EB01B6EF65A00ADC325 /* img.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = img.jpg; sourceTree = SOURCE_ROOT; };
+		61D4F6601B6BE14C00BA3BE8 /* Image003.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Image003.png; path = ../../Image003.png; sourceTree = "<group>"; };
+		61D4F6621B6BE3A600BA3BE8 /* Rightarrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Rightarrow.png; sourceTree = SOURCE_ROOT; };
 		61D773351B5D6F6100DD9AA2 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		61EE081C1B7073F700C1F973 /* RequestMeeting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RequestMeeting.swift; path = ../TemplateProject/RequestMeeting.swift; sourceTree = "<group>"; };
 		624262B41B4460CB00005CE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		624262B81B4460CB00005CE3 /* ErrorHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
 		624262B91B4460CB00005CE3 /* ParseLoginHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseLoginHelper.swift; sourceTree = "<group>"; };
@@ -216,7 +226,6 @@
 				62551BA01B06C35B000913E4 /* AudioToolbox.framework in Frameworks */,
 				62551B9E1B06C354000913E4 /* MobileCoreServices.framework in Frameworks */,
 				62551B9C1B06C327000913E4 /* SystemConfiguration.framework in Frameworks */,
-				61CA19D21B5981F10000A5F5 /* FBSDKCoreKit.framework in Frameworks */,
 				62551B9A1B06C31F000913E4 /* CoreLocation.framework in Frameworks */,
 				62551B981B06C2FD000913E4 /* Accounts.framework in Frameworks */,
 				62551B961B06C2F5000913E4 /* Social.framework in Frameworks */,
@@ -249,9 +258,9 @@
 		617571631B67106500546093 /* MapViewController */ = {
 			isa = PBXGroup;
 			children = (
-				617FE0B61B6459EE00F73342 /* GooglePlacesAutocomplete.h */,
-				617FE0AC1B6459D000F73342 /* GooglePlacesAutocomplete.swift */,
-				617FE0B41B6459DD00F73342 /* GooglePlacesAutocomplete.xib */,
+				6174CF711B6FCE59003673FB /* GooglePlacesAutocomplete.h */,
+				6174CF721B6FCE59003673FB /* GooglePlacesAutocomplete.swift */,
+				6174CF731B6FCE59003673FB /* GooglePlacesAutocomplete.xib */,
 			);
 			name = MapViewController;
 			path = ../Models;
@@ -276,6 +285,7 @@
 				61AA91FD1B608D1B00ECE9FE /* PushNotificationController.swift */,
 				61CA19C91B5849A80000A5F5 /* MessageViewController.swift */,
 				39B140461B58268500FEF6E0 /* CompassViewController.swift */,
+				618D766E1B700D6E00FD040A /* NotificationViewController.swift */,
 				39B1403C1B58264700FEF6E0 /* FriendFinderViewController.swift */,
 				617571661B67260800546093 /* NavigationController.swift */,
 			);
@@ -286,7 +296,9 @@
 			isa = PBXGroup;
 			children = (
 				61CA19C71B5845F10000A5F5 /* Message.swift */,
+				61CA3EA81B6EAD0F00ADC325 /* MeetingRequest.swift */,
 				39B140481B5826B900FEF6E0 /* AppDelegate.swift */,
+				61EE081C1B7073F700C1F973 /* RequestMeeting.swift */,
 				39B140281B58247F00FEF6E0 /* User.swift */,
 			);
 			path = Models;
@@ -304,7 +316,9 @@
 		61D773341B5D612C00DD9AA2 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				617FE0BD1B645C4400F73342 /* Rightarrow.png */,
+				61D4F6601B6BE14C00BA3BE8 /* Image003.png */,
+				61D4F6621B6BE3A600BA3BE8 /* Rightarrow.png */,
+				61CA3EB01B6EF65A00ADC325 /* img.jpg */,
 				6144C0621B5E960A007AAFEA /* ss.jpg */,
 				39B140401B58266600FEF6E0 /* arrow.png */,
 				6144C05E1B5E95F3007AAFEA /* images.png */,
@@ -319,12 +333,13 @@
 				61CA19CC1B58B1C70000A5F5 /* Models */,
 				61CA19CB1B58B18A0000A5F5 /* View Controllers */,
 				39B140271B58247F00FEF6E0 /* FriendFinderTableViewCell.swift */,
+				618D76761B7010FA00FD040A /* NotificationTableViewCell.swift */,
+				624262B71B4460CB00005CE3 /* Helpers */,
 				61CA19D51B5994AD0000A5F5 /* GeoCompass */,
 				39B140381B58259F00FEF6E0 /* Main.storyboard */,
 				39B1402D1B58247F00FEF6E0 /* Images.xcassets */,
 				624262B31B4460CB00005CE3 /* LaunchScreen.xib */,
 				61D773341B5D612C00DD9AA2 /* Assets */,
-				624262B71B4460CB00005CE3 /* Helpers */,
 				624262BB1B4460CB00005CE3 /* Info.plist */,
 				624262BC1B4460CB00005CE3 /* TemplateProject-Bridging-Header.h */,
 			);
@@ -345,7 +360,6 @@
 			isa = PBXGroup;
 			children = (
 				61D773351B5D6F6100DD9AA2 /* WebKit.framework */,
-				61CA19D11B5981F10000A5F5 /* FBSDKCoreKit.framework */,
 				61CA19C51B5845360000A5F5 /* ImageIO.framework */,
 				62A07D651B1F79F2001F6916 /* libstdc++.6.dylib */,
 				62551BA11B06C373000913E4 /* libsqlite3.dylib */,
@@ -546,10 +560,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				6144C0631B5E960A007AAFEA /* ss.jpg in Resources */,
-				617FE0B51B6459DD00F73342 /* GooglePlacesAutocomplete.xib in Resources */,
-				617FE0BE1B645C4400F73342 /* Rightarrow.png in Resources */,
+				61D4F6631B6BE3A600BA3BE8 /* Rightarrow.png in Resources */,
 				39B140331B58247F00FEF6E0 /* Images.xcassets in Resources */,
 				6144C0601B5E95F3007AAFEA /* images.png in Resources */,
+				6174CF751B6FCE59003673FB /* GooglePlacesAutocomplete.xib in Resources */,
+				61CA3EB11B6EF65A00ADC325 /* img.jpg in Resources */,
+				61D4F6611B6BE14C00BA3BE8 /* Image003.png in Resources */,
 				624262C11B4460CB00005CE3 /* LaunchScreen.xib in Resources */,
 				39B140431B58266600FEF6E0 /* arrow.png in Resources */,
 				39B140391B58259F00FEF6E0 /* Main.storyboard in Resources */,
@@ -611,7 +627,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				617FE0AD1B6459D000F73342 /* GooglePlacesAutocomplete.swift in Sources */,
+				618D76771B7010FA00FD040A /* NotificationTableViewCell.swift in Sources */,
+				6174CF741B6FCE59003673FB /* GooglePlacesAutocomplete.swift in Sources */,
 				39B1403D1B58264700FEF6E0 /* FriendFinderViewController.swift in Sources */,
 				61AA91FE1B608D1B00ECE9FE /* PushNotificationController.swift in Sources */,
 				6175E68F1B6ABA4700DFC9C2 /* Business.swift in Sources */,
@@ -621,13 +638,16 @@
 				39B140451B58266600FEF6E0 /* ParseHelper.swift in Sources */,
 				6175E6911B6ABA6500DFC9C2 /* BusinessesViewController.swift in Sources */,
 				39B140301B58247F00FEF6E0 /* GeoPointCompass.m in Sources */,
+				618D766F1B700D6E00FD040A /* NotificationViewController.swift in Sources */,
 				617571671B67260800546093 /* NavigationController.swift in Sources */,
 				624262C31B4460CB00005CE3 /* ErrorHandling.swift in Sources */,
 				61CA19C81B5845F10000A5F5 /* Message.swift in Sources */,
+				61EE081D1B7073F700C1F973 /* RequestMeeting.swift in Sources */,
 				39B140491B5826B900FEF6E0 /* AppDelegate.swift in Sources */,
 				6175E68D1B6AB13A00DFC9C2 /* YelpAPI.swift in Sources */,
 				61CA19CA1B5849A80000A5F5 /* MessageViewController.swift in Sources */,
 				39B1402E1B58247F00FEF6E0 /* FriendFinderTableViewCell.swift in Sources */,
+				61CA3EA91B6EAD0F00ADC325 /* MeetingRequest.swift in Sources */,
 				61AD21B01B67CC0B0052B5C7 /* PickerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
