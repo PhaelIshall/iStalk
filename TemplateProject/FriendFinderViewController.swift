@@ -115,7 +115,7 @@ class FriendFinderViewController: UIViewController, CLLocationManagerDelegate  {
                         for entry in result {
                             if (self.checkIfFriend(entry.fbID)){
                                 self.nearbyFriends.append(entry)
-                                println(entry)
+                               
                             }
                         }
                         self.tableView.reloadData()

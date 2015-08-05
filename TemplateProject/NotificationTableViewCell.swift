@@ -9,5 +9,11 @@
 import UIKit
 
 class NotificationTableViewCell: UITableViewCell {
-  
+    @IBOutlet weak var Picture: UIImageView!
+    
+    @IBOutlet weak var request: UILabel!
+    
+    @IBOutlet weak var msg: UILabel!
+    
+
 }
