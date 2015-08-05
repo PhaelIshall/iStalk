@@ -40,8 +40,12 @@ class MessageViewController: JSQMessagesViewController {
         super.viewDidLoad()
         navigationController?.navigationBar.topItem?.title = "Logout"
         self.inputToolbar.contentView.leftBarButtonItem = nil
+        
+        
+         self.automaticallyScrollsToMostRecentMessage = true
         senderDisplayName = User.currentUser()!.username
         senderId = User.currentUser()!.objectId
+       
         
     }
 

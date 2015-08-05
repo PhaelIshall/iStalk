@@ -113,7 +113,12 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="sectionIndexBackgroundColor" red="0.9960784912109375" green="1" blue="0.9960784912109375" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="tintColor" red="0.127946745" green="0.1636825982" blue="0.80063628109999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="separatorColor" red="0.25517009177775957" green="0.47860136787435648" blue="0.5312192440032959" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
+                                <color key="sectionIndexColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="sectionIndexBackgroundColor" red="0.88156612591330252" green="1" blue="0.97460841147694754" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="sectionIndexTrackingBackgroundColor" red="0.49019610879999997" green="0.8078432083" blue="0.26274511220000002" alpha="1" colorSpace="deviceRGB"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" text="" id="DHm-fL-uEv">
                                     <rect key="frame" x="0.0" y="278" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -223,13 +228,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="3HW-yC-uHt">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="b7k-Ep-cX2">
+                        <barButtonItem key="leftBarButtonItem" title="Item" style="plain" id="b7k-Ep-cX2">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Pat-yg-dpp">
                                 <rect key="frame" x="16" y="12" width="10" height="10"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <inset key="contentEdgeInsets" minX="15" minY="15" maxX="15" maxY="15"/>
-                                <state key="normal" image="network11-2.png">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" image="speech-bubble14-3.png">
+                                    <color key="titleShadowColor" red="0.0" green="0.70588237050000002" blue="0.231372565" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="kBd-5M-ghR" kind="show" identifier="notif" id="5dQ-DD-jqK"/>
@@ -273,37 +278,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5WX-Y4-Fd9">
-                                <rect key="frame" x="150" y="150" width="300" height="300"/>
+                                <rect key="frame" x="200" y="160" width="200" height="200"/>
                                 <animations/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="4KU-Ks-ye0"/>
-                                    <constraint firstAttribute="width" constant="300" id="9Qu-Cf-KeW"/>
+                                    <constraint firstAttribute="height" constant="200" id="4KU-Ks-ye0"/>
+                                    <constraint firstAttribute="width" constant="200" id="9Qu-Cf-KeW"/>
                                 </constraints>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j2I-bs-A32">
                                 <rect key="frame" x="0.0" y="561" width="600" height="44"/>
                                 <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="aXN-cT-wGQ"/>
-                                    <barButtonItem title="Let's meet here" id="F1z-T8-zB6">
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="21w-lu-Ovh"/>
+                                    <barButtonItem image="map-pointer2.png" id="NJz-PF-U4i" userLabel="Picker">
+                                        <inset key="imageInsets" minX="0.0" minY="-17" maxX="0.0" maxY="-10"/>
                                         <connections>
-                                            <action selector="map:" destination="1bc-Nq-JGF" id="JZx-xa-LfS"/>
+                                            <action selector="map:" destination="1bc-Nq-JGF" id="noZ-Kv-m97"/>
+                                            <segue destination="JQT-pK-6DI" kind="show" identifier="openMap" id="Cs8-64-HTC"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="21w-lu-Ovh"/>
-                                    <barButtonItem style="plain" id="fbQ-BQ-49I">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ihT-fq-a5M">
-                                            <rect key="frame" x="294" y="7" width="43" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Picker">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <segue destination="JQT-pK-6DI" kind="show" identifier="openMap" id="ch1-o3-LXU"/>
-                                            </connections>
-                                        </button>
-                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="hK2-5s-3FB"/>
-                                    <barButtonItem title="Messenger" id="g3x-SO-NSe">
+                                    <barButtonItem image="envelope48-2.png" id="g3x-SO-NSe">
                                         <connections>
                                             <segue destination="akb-Ei-exk" kind="show" identifier="openMessages" id="fGR-Bd-n8c"/>
                                         </connections>
@@ -311,33 +305,42 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="UyC-Ad-mOM"/>
                                 </items>
                             </toolbar>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jj5-HW-GPa">
+                                <rect key="frame" x="16" y="368" width="568" height="182"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" contentMode="scaleAspectFill" fixedFrame="YES" alwaysBounceHorizontal="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5oR-pn-Wco">
+                                        <rect key="frame" x="-4" y="0.0" width="576" height="182"/>
+                                        <color key="backgroundColor" red="0.49910694939458855" green="0.69060589588711552" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                            </scrollView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="j2I-bs-A32" firstAttribute="leading" secondItem="hp8-mQ-4Jv" secondAttribute="leadingMargin" constant="-16" id="5Zu-gH-Sho"/>
-                            <constraint firstItem="5WX-Y4-Fd9" firstAttribute="top" secondItem="5RH-gd-rUc" secondAttribute="bottom" constant="86" id="BLr-yI-VQo"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="5WX-Y4-Fd9" secondAttribute="trailing" constant="50" id="NyP-5Y-csR"/>
-                            <constraint firstAttribute="centerY" secondItem="5WX-Y4-Fd9" secondAttribute="centerY" id="TKv-mH-8wU"/>
+                            <constraint firstItem="kLa-qa-RDu" firstAttribute="top" secondItem="Jj5-HW-GPa" secondAttribute="bottom" constant="50" id="7ZM-XC-7a7"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="j2I-bs-A32" secondAttribute="bottom" constant="5" id="8j2-b2-wcd"/>
+                            <constraint firstAttribute="centerY" secondItem="5WX-Y4-Fd9" secondAttribute="centerY" constant="40" id="TKv-mH-8wU"/>
+                            <constraint firstItem="Jj5-HW-GPa" firstAttribute="centerX" secondItem="j2I-bs-A32" secondAttribute="centerX" id="VN6-4o-tVU"/>
                             <constraint firstAttribute="centerX" secondItem="5WX-Y4-Fd9" secondAttribute="centerX" id="Vcz-YM-xJQ"/>
-                            <constraint firstItem="5WX-Y4-Fd9" firstAttribute="leading" secondItem="hp8-mQ-4Jv" secondAttribute="leadingMargin" constant="134" id="Y0Z-aE-U5r"/>
                             <constraint firstAttribute="trailingMargin" secondItem="j2I-bs-A32" secondAttribute="trailing" constant="-16" id="Yzd-Qz-sk7"/>
                             <constraint firstItem="kLa-qa-RDu" firstAttribute="top" secondItem="j2I-bs-A32" secondAttribute="bottom" constant="-5" id="jfL-1B-kAY"/>
-                            <constraint firstItem="5WX-Y4-Fd9" firstAttribute="leading" secondItem="hp8-mQ-4Jv" secondAttribute="leadingMargin" constant="50" id="sju-GZ-sz3"/>
+                            <constraint firstItem="Jj5-HW-GPa" firstAttribute="leading" secondItem="hp8-mQ-4Jv" secondAttribute="leadingMargin" id="rXF-47-bex"/>
+                            <constraint firstItem="Jj5-HW-GPa" firstAttribute="top" secondItem="5WX-Y4-Fd9" secondAttribute="bottom" constant="8" id="yQE-A4-uc4"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="BLr-yI-VQo"/>
-                                <exclude reference="NyP-5Y-csR"/>
-                                <exclude reference="Y0Z-aE-U5r"/>
-                                <exclude reference="sju-GZ-sz3"/>
+                                <exclude reference="8j2-b2-wcd"/>
                             </mask>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="iGJ-AU-qIf"/>
                     <connections>
                         <outlet property="arrowImageView" destination="5WX-Y4-Fd9" id="Kc2-Wg-XZb"/>
-                        <outlet property="meet" destination="F1z-T8-zB6" id="ick-Zm-yEO"/>
+                        <outlet property="textView" destination="5oR-pn-Wco" id="b7K-h0-Fzk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TdH-wx-bs1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -400,7 +403,7 @@
             </objects>
             <point key="canvasLocation" x="2907" y="134"/>
         </scene>
-        <!--Picker View Controller-->
+        <!--Pick a place to meet your friend-->
         <scene sceneID="ehQ-KT-fPr">
             <objects>
                 <viewController id="JQT-pK-6DI" customClass="PickerViewController" customModule="iStalk" customModuleProvider="target" sceneMemberID="viewController">
@@ -412,8 +415,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="TAl-r0-8kK">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="TAl-r0-8kK">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -425,8 +428,7 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="eax-FG-CLs">
-                        <nil key="title"/>
+                    <navigationItem key="navigationItem" title="Pick a place to meet your friend" id="eax-FG-CLs">
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="LRk-Rz-uBi">
                             <connections>
                                 <action selector="showSearchBar:" destination="JQT-pK-6DI" id="nQq-9t-bPr"/>
@@ -444,7 +446,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="network11-2.png" width="64" height="64"/>
+        <image name="envelope48-2.png" width="32" height="32"/>
+        <image name="map-pointer2.png" width="32" height="32"/>
+        <image name="speech-bubble14-3.png" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="NXd-Vr-dZL"/>

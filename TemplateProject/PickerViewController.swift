@@ -63,9 +63,11 @@ class PickerViewController: UIViewController, MKMapViewDelegate, UISearchBarDele
                 self.mapView.addAnnotation(point)
             }
         }
-        
+       
 
     }
+    
+    
     
         func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
             

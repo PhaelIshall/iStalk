@@ -17,7 +17,22 @@ class FriendFinderViewController: UIViewController, CLLocationManagerDelegate  {
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
-    // the current parse query
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
+        
+        return refreshControl
+        }()
+    
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        
+         checkUsers()
+        
+        self.tableView.reloadData()
+        refreshControl.endRefreshing()
+    }
+    
+    
     var query: PFQuery? {
         didSet {
             // whenever we assign a new query, cancel any previous requests
@@ -84,9 +99,7 @@ class FriendFinderViewController: UIViewController, CLLocationManagerDelegate  {
         super.viewDidAppear(animated)
         state = .DefaultMode
         checkUsers()
-        
-        
-        
+        self.tableView.addSubview(self.refreshControl)
     }
     
     func checkUsers(){

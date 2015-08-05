@@ -10,6 +10,22 @@ import UIKit
 import Parse
 
 class NotificationViewController: UIViewController{
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
+        
+        return refreshControl
+        }()
+    
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        allRequests = []
+        requestsArray = []
+        users = []
+        getNotifications()
+        self.tableView.reloadData()
+        refreshControl.endRefreshing()
+    }
+
     
     var selectedRequest : String?
     var requestFetched: MeetingRequest?
@@ -20,6 +36,9 @@ class NotificationViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
             getNotifications()
+        self.tableView.addSubview(self.refreshControl)
+        
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -74,8 +93,8 @@ extension NotificationViewController: UITableViewDataSource, UITableViewDelegate
         
         let url = NSURL(string: "http://graph.facebook.com/\(userID)/picture")
         cell.Picture.sd_setImageWithURL(url, completed: nil)
-        cell.Picture.layer.cornerRadius = cell.Picture.frame.size.width / 2;
-        cell.Picture.clipsToBounds = true;
+       
+       
 
         return cell
     }

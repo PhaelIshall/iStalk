@@ -9,9 +9,11 @@
 import UIKit
 import CoreLocation
 import Parse
+import MapKit
 
 
 class CompassViewController: UIViewController, UITableViewDelegate{
+ @IBOutlet var textView: UITextView?
     
     let gpaViewController = GooglePlacesAutocomplete(
         apiKey: "AIzaSyD_ylpRvrjZdLA-T0Hk5ymMNDX8X9iDlEI",
@@ -56,7 +58,7 @@ class CompassViewController: UIViewController, UITableViewDelegate{
                 self.compass.arrowImageView = self.arrowImageView
                 self.compass.latitudeOfTargetedPoint = self.parseUser!.Coordinate.latitude
                 self.compass.longitudeOfTargetedPoint = self.parseUser!.Coordinate.longitude
-                
+                  getDirection()
                 self.d = User.currentUser()?.Coordinate.distanceInKilometersTo(self.parseUser?.Coordinate!);
                 self.title = String(format:"%.1f", d!) + "km away"
                 
@@ -74,9 +76,8 @@ class CompassViewController: UIViewController, UITableViewDelegate{
 
         }
     }
-
     var compass  = GeoPointCompass()
-
+   
     @IBOutlet var arrowImageView: UIImageView! {
         didSet {
             arrowImageView.image = UIImage(named: "Rightarrow.png")
@@ -85,12 +86,55 @@ class CompassViewController: UIViewController, UITableViewDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+      
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    
+    
+    
+    func getDirection(){
+        
+        var myDestination = MKPlacemark(coordinate: CLLocationCoordinate2DMake(parseUser!.Coordinate.latitude, parseUser!.Coordinate.longitude), addressDictionary: nil)
+        var sourcePlacemark = MKPlacemark(coordinate: CLLocationCoordinate2DMake(User.currentUser()!.Coordinate.latitude, User.currentUser()!.Coordinate.longitude), addressDictionary: nil)
+        
+        
+          var source:MKMapItem?
+        let destMKMap = MKMapItem(placemark: myDestination)!
+        
+        var directionRequest:MKDirectionsRequest = MKDirectionsRequest()
+        directionRequest.setSource(MKMapItem.mapItemForCurrentLocation())
+        directionRequest.setDestination(destMKMap)
+        directionRequest.transportType = MKDirectionsTransportType.Walking
+       
+        
+        let dir = MKDirections(request: directionRequest)
+        dir.calculateDirectionsWithCompletionHandler() {
+            (response:MKDirectionsResponse!, error:NSError!) in
+            if response == nil {
+                println(error)
+                return
+            }
+            println("got directions")
+            let route = response.routes[0] as! MKRoute
+            
+            for step in route.steps {
+                println("After \(step.distance) metres: \(step.instructions)")
+                //self.textView?.text.stringByAppendingFormat("\n%", "After \(step.distance) metres: \(step.instructions)")
+                if (self.textView?.text == ""){
+                self.textView!.text = self.textView!.text + "After \(step.distance) metres: \(step.instructions)"
+                }
+                else {
+                    self.textView!.text = self.textView!.text + "\n After \(step.distance) metres: \(step.instructions)"
+
+                }
+            }
+        }
+    }
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if (segue.identifier == "openMessages") {
@@ -110,6 +154,8 @@ class CompassViewController: UIViewController, UITableViewDelegate{
         self.performSegueWithIdentifier("openMessages", sender: self)
         self.performSegueWithIdentifier("openMap", sender: self)
     }
+    
+    
 
 }
 extension CompassViewController: GooglePlacesAutocompleteDelegate {
