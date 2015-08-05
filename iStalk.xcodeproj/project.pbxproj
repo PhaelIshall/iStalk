@@ -36,11 +36,11 @@
 		61CA3EB11B6EF65A00ADC325 /* img.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 61CA3EB01B6EF65A00ADC325 /* img.jpg */; };
 		61D4F6611B6BE14C00BA3BE8 /* Image003.png in Resources */ = {isa = PBXBuildFile; fileRef = 61D4F6601B6BE14C00BA3BE8 /* Image003.png */; };
 		61D4F6631B6BE3A600BA3BE8 /* Rightarrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 61D4F6621B6BE3A600BA3BE8 /* Rightarrow.png */; };
-		61D505531B726EC400C87994 /* speech-bubble14-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 61D505521B726EC400C87994 /* speech-bubble14-3.png */; };
-		61D5055B1B726EC800C87994 /* envelope48-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 61D5055A1B726EC800C87994 /* envelope48-2.png */; };
-		61D5055D1B72701900C87994 /* map-pointer2.png in Resources */ = {isa = PBXBuildFile; fileRef = 61D5055C1B72701900C87994 /* map-pointer2.png */; };
+		61D5055F1B72B2F400C87994 /* speech-bubble14-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 61D5055E1B72B2F400C87994 /* speech-bubble14-3.png */; };
+		61D505611B72B2FE00C87994 /* map-pointer2.png in Resources */ = {isa = PBXBuildFile; fileRef = 61D505601B72B2FE00C87994 /* map-pointer2.png */; };
+		61D505631B72B30100C87994 /* envelope48-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 61D505621B72B30100C87994 /* envelope48-2.png */; };
+		61D505651B72B31D00C87994 /* network11-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 61D505641B72B31D00C87994 /* network11-2.png */; };
 		61D773361B5D6F6100DD9AA2 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61D773351B5D6F6100DD9AA2 /* WebKit.framework */; };
-		61EE08251B71A17300C1F973 /* network11-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 61EE08241B71A17300C1F973 /* network11-2.png */; };
 		624262C11B4460CB00005CE3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 624262B31B4460CB00005CE3 /* LaunchScreen.xib */; };
 		624262C31B4460CB00005CE3 /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624262B81B4460CB00005CE3 /* ErrorHandling.swift */; };
 		624262C41B4460CB00005CE3 /* ParseLoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624262B91B4460CB00005CE3 /* ParseLoginHelper.swift */; };
@@ -186,11 +186,11 @@
 		61CA3EB01B6EF65A00ADC325 /* img.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = img.jpg; sourceTree = SOURCE_ROOT; };
 		61D4F6601B6BE14C00BA3BE8 /* Image003.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Image003.png; path = ../../Image003.png; sourceTree = "<group>"; };
 		61D4F6621B6BE3A600BA3BE8 /* Rightarrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Rightarrow.png; sourceTree = SOURCE_ROOT; };
-		61D505521B726EC400C87994 /* speech-bubble14-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "speech-bubble14-3.png"; path = "../../../speech-bubble14-3.png"; sourceTree = "<group>"; };
-		61D5055A1B726EC800C87994 /* envelope48-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "envelope48-2.png"; path = "../../../envelope48-2.png"; sourceTree = "<group>"; };
-		61D5055C1B72701900C87994 /* map-pointer2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "map-pointer2.png"; path = "../../../map-pointer2.png"; sourceTree = "<group>"; };
+		61D5055E1B72B2F400C87994 /* speech-bubble14-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "speech-bubble14-3.png"; sourceTree = SOURCE_ROOT; };
+		61D505601B72B2FE00C87994 /* map-pointer2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-pointer2.png"; sourceTree = SOURCE_ROOT; };
+		61D505621B72B30100C87994 /* envelope48-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "envelope48-2.png"; sourceTree = SOURCE_ROOT; };
+		61D505641B72B31D00C87994 /* network11-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "network11-2.png"; sourceTree = SOURCE_ROOT; };
 		61D773351B5D6F6100DD9AA2 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		61EE08241B71A17300C1F973 /* network11-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "network11-2.png"; path = "../../../network11-2.png"; sourceTree = "<group>"; };
 		624262B41B4460CB00005CE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		624262B81B4460CB00005CE3 /* ErrorHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
 		624262B91B4460CB00005CE3 /* ParseLoginHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseLoginHelper.swift; sourceTree = "<group>"; };
@@ -321,10 +321,10 @@
 		61D773341B5D612C00DD9AA2 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				61D5055C1B72701900C87994 /* map-pointer2.png */,
-				61EE08241B71A17300C1F973 /* network11-2.png */,
-				61D5055A1B726EC800C87994 /* envelope48-2.png */,
-				61D505521B726EC400C87994 /* speech-bubble14-3.png */,
+				61D505601B72B2FE00C87994 /* map-pointer2.png */,
+				61D505621B72B30100C87994 /* envelope48-2.png */,
+				61D505641B72B31D00C87994 /* network11-2.png */,
+				61D5055E1B72B2F400C87994 /* speech-bubble14-3.png */,
 				61D4F6601B6BE14C00BA3BE8 /* Image003.png */,
 				61D4F6621B6BE3A600BA3BE8 /* Rightarrow.png */,
 				61CA3EB01B6EF65A00ADC325 /* img.jpg */,
@@ -569,19 +569,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				6144C0631B5E960A007AAFEA /* ss.jpg in Resources */,
+				61D505611B72B2FE00C87994 /* map-pointer2.png in Resources */,
 				61D4F6631B6BE3A600BA3BE8 /* Rightarrow.png in Resources */,
 				39B140331B58247F00FEF6E0 /* Images.xcassets in Resources */,
 				6144C0601B5E95F3007AAFEA /* images.png in Resources */,
+				61D5055F1B72B2F400C87994 /* speech-bubble14-3.png in Resources */,
 				6174CF751B6FCE59003673FB /* GooglePlacesAutocomplete.xib in Resources */,
+				61D505651B72B31D00C87994 /* network11-2.png in Resources */,
 				61CA3EB11B6EF65A00ADC325 /* img.jpg in Resources */,
 				61D4F6611B6BE14C00BA3BE8 /* Image003.png in Resources */,
-				61D5055D1B72701900C87994 /* map-pointer2.png in Resources */,
 				624262C11B4460CB00005CE3 /* LaunchScreen.xib in Resources */,
 				39B140431B58266600FEF6E0 /* arrow.png in Resources */,
 				39B140391B58259F00FEF6E0 /* Main.storyboard in Resources */,
-				61D5055B1B726EC800C87994 /* envelope48-2.png in Resources */,
-				61D505531B726EC400C87994 /* speech-bubble14-3.png in Resources */,
-				61EE08251B71A17300C1F973 /* network11-2.png in Resources */,
+				61D505631B72B30100C87994 /* envelope48-2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
