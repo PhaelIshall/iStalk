@@ -201,33 +201,3 @@ class CompassViewController: UIViewController, UITableViewDelegate, MKMapViewDel
     
 
 }
-extension CompassViewController: GooglePlacesAutocompleteDelegate {
-    func placeSelected(place: Place) {
-        self.dismissViewControllerAnimated(true, completion: { () -> Void in
-            let alertController = UIAlertController(title: "Send request", message: "Would you like to send a request to meet \(self.parseUser!.username!)?", preferredStyle: .Alert)
-            
-            alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-            alertController.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
-                textField.placeholder = "Time of meeting"
-               
-            })
-            
-            
-            let sendRequestActionHandler = { (action:UIAlertAction!) -> Void in
-                let alertMessage = UIAlertController(title: "Request sent", message: "Meeting in \(place.description)", preferredStyle: .Alert)
-                alertMessage.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-                self.presentViewController(alertMessage, animated: true, completion: nil)
-            }
-            let requestAction = UIAlertAction(title: "Send request", style: .Default, handler: sendRequestActionHandler)
-            alertController.addAction(requestAction)
-            self.presentViewController(alertController, animated: true, completion: nil)
-            
-           
-                    })
-    }
-    
-    func placeViewClosed() {
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-}
-
