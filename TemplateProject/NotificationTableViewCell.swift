@@ -15,5 +15,6 @@ class NotificationTableViewCell: UITableViewCell {
     
     @IBOutlet weak var msg: UILabel!
     
+    
 
 }

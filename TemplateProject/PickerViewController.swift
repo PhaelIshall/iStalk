@@ -7,17 +7,54 @@ class PickerViewController: UIViewController, MKMapViewDelegate, UISearchBarDele
     var message : String = ""
     var selectedLocation: CLLocationCoordinate2D?
     
+    //Search controller related
     var searchController:UISearchController!
     @IBAction func showSearchBar(sender: AnyObject) {
         // Create the search controller and make it perform the results updating.
-        searchController = UISearchController(searchResultsController: nil)
+        searchController = UISearchController(searchResultsController: searchController)
         searchController.hidesNavigationBarDuringPresentation = false
         self.searchController.searchBar.delegate = self
         // Present the view controller
         presentViewController(searchController, animated: true, completion: nil)
     }
-
+//    var annotation:MKAnnotation!
+//    var localSearchRequest:MKLocalSearchRequest!
+//    var localSearch:MKLocalSearch!
+//    var localSearchResponse:MKLocalSearchResponse!
+//    var error:NSError!
+//    var pointAnnotation:MKPointAnnotation!
+//    var pinAnnotationView:MKPinAnnotationView!
+    
     @IBOutlet weak var mapView: MKMapView!
+    
+//    func searchBarSearchButtonClicked(searchBar: UISearchBar){
+//        searchBar.resignFirstResponder()
+//        dismissViewControllerAnimated(true, completion: nil)
+//        if self.mapView.annotations.count != 0{
+//            annotation = self.mapView.annotations[0] as! MKAnnotation
+//            self.mapView.removeAnnotation(annotation)
+//        }
+//        localSearchRequest = MKLocalSearchRequest()
+//        localSearchRequest.naturalLanguageQuery = searchBar.text
+//        localSearch = MKLocalSearch(request: localSearchRequest)
+//        localSearch.startWithCompletionHandler { (localSearchResponse, error) -> Void in
+//            
+//            if localSearchResponse == nil{
+//                var alert = UIAlertView(title: nil, message: "Place not found", delegate: self, cancelButtonTitle: "Try again")
+//                alert.show()
+//                return
+//            }
+//            self.pointAnnotation = MKPointAnnotation()
+//            self.pointAnnotation.title = searchBar.text
+//            self.pointAnnotation.coordinate = CLLocationCoordinate2D(latitude: localSearchResponse.boundingRegion.center.latitude, longitude:     localSearchResponse.boundingRegion.center.longitude)
+//            self.pinAnnotationView = MKPinAnnotationView(annotation: self.pointAnnotation, reuseIdentifier: nil)
+//            self.mapView.centerCoordinate = self.pointAnnotation.coordinate
+//            self.mapView.addAnnotation(self.pinAnnotationView.annotation)
+       //}
+    //}
+    
+    
+    
     
     var selectedFriend : User?
     
@@ -25,37 +62,59 @@ class PickerViewController: UIViewController, MKMapViewDelegate, UISearchBarDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//                Business.searchWithTerm("Thai", completion: { (businesses: [Business]!, error: NSError!) -> Void in
-//                    self.businesses = businesses
-//        
-//                    for business in businesses {
-//                        println(business.name!)
-//                        println(business.address!)
-//                    }
-//                })
-        
-        
-                mapView.showsUserLocation = true;
-
+        mapView.showsUserLocation = true;
         var zoomLocation: CLLocationCoordinate2D = CLLocationCoordinate2D()
         zoomLocation.latitude = User.currentUser()!.Coordinate.latitude
         zoomLocation.longitude = User.currentUser()!.Coordinate.longitude
-        
         var viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 1900, 1900);
         var adjustedRegion = mapView.regionThatFits(viewRegion)
-        
-        
-         mapView.setRegion(adjustedRegion, animated: true);
-        
+        mapView.setRegion(adjustedRegion, animated: true);
         mapView.delegate=self;
+
         
-        Business.searchWithTerm("Restaurants", sort: .Distance, categories: ["asianfusion", "burgers"], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
+        var press: UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: "action:")
+
+        press.minimumPressDuration = 1.0
+        mapView.addGestureRecognizer(press)
+    }
+    
+    func action (rec: UILongPressGestureRecognizer){
+        let annotationsToRemove = mapView.annotations.filter { $0 !== self.mapView.userLocation }
+        mapView.removeAnnotations( annotationsToRemove )
+
+      var touchPoint : CGPoint  =  rec.locationInView(mapView)
+       var touchMapCoordinate = mapView.convertPoint(touchPoint, toCoordinateFromView: mapView)
+       var pa = MKPointAnnotation()
+        pa.coordinate = touchMapCoordinate;
+        var placemark = MKPlacemark(coordinate: pa.coordinate, addressDictionary: nil)
+        pa.title = "Selected place";
+        mapView.addAnnotation(pa)
+        let geoCoder = CLGeocoder()
+        let location = CLLocation(latitude: pa.coordinate.latitude, longitude: pa.coordinate.longitude)
+        
+        geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
+            let placeArray = placemarks as? [CLPlacemark]
+            var placeMark: CLPlacemark!
+            placeMark = placeArray?[0]
+            var sub: String = ""
+            // Address dictionary
+          
+            // Location name
+            if let locationName = placeMark.addressDictionary["Name"] as? String {
+                sub += locationName
+            }
+            if let city = placeMark.addressDictionary["City"] as? String {
+                sub += ", " + city
+            }
+            pa.subtitle = sub
+        })
+    }
+    
+    func searchForPlace(searchtext: String){
+        Business.searchWithTerm(searchtext, sort: .Distance, categories: [], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
             
             for business in businesses {
-//                println(business.name!)
-//                println(business.address!)
                 var point = MKPointAnnotation()
                 point.title = business.name
                 point.subtitle = business.address
@@ -63,10 +122,12 @@ class PickerViewController: UIViewController, MKMapViewDelegate, UISearchBarDele
                 self.mapView.addAnnotation(point)
             }
         }
-       
-
     }
-    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        let annotationsToRemove = mapView.annotations.filter { $0 !== self.mapView.userLocation }
+        mapView.removeAnnotations( annotationsToRemove )
+        searchForPlace(searchText)
+    }
     
     
         func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!, calloutAccessoryControlTapped control: UIControl!) {
@@ -100,7 +161,7 @@ class PickerViewController: UIViewController, MKMapViewDelegate, UISearchBarDele
     
     func sendRequest(toUser: User?){
         let geoPoint = PFGeoPoint(latitude: selectedLocation!.latitude, longitude: selectedLocation!.longitude)
-        let params = ["userId" : selectedFriend!.objectId!,  "location" : geoPoint, "message": message]
+        let params = ["userId" : selectedFriend!.objectId!,  "location" : geoPoint, "message": message, "status": "pending"]
         PFCloud.callFunctionInBackground("sendRequest", withParameters: params) { (request, error) -> Void in
             
             if let error = error {

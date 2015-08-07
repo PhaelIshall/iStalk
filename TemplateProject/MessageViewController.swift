@@ -21,7 +21,7 @@ class MessageViewController: JSQMessagesViewController {
         }
     }
 
-    var placeholder: UIImage = UIImage(named: "ss.jpg")!
+    var placeholder: UIImage = UIImage(named: "img.jpg")!
     var messages = [Message](){
         didSet {
             if self.isViewLoaded() {

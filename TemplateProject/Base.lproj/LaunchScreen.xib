@@ -10,20 +10,20 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="eyn-ZM-LG0">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Find friends and choose a place to meet them!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70u-k5-lP0">
+                    <rect key="frame" x="119" y="289" width="357" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.40000000596046448" green="1" blue="0.80000001192092896" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="eyn-ZM-LG0" firstAttribute="top" secondItem="1VS-4E-lvk" secondAttribute="top" id="IuV-U0-ZBq"/>
-                <constraint firstAttribute="trailing" secondItem="eyn-ZM-LG0" secondAttribute="trailing" id="dSG-RQ-6Cz"/>
-                <constraint firstAttribute="bottom" secondItem="eyn-ZM-LG0" secondAttribute="bottom" id="em6-C5-2Tn"/>
-                <constraint firstItem="eyn-ZM-LG0" firstAttribute="leading" secondItem="1VS-4E-lvk" secondAttribute="leading" id="spE-1B-pEI"/>
+                <constraint firstItem="70u-k5-lP0" firstAttribute="top" secondItem="1VS-4E-lvk" secondAttribute="top" constant="289" id="D9i-sp-Gws"/>
+                <constraint firstAttribute="bottom" secondItem="70u-k5-lP0" secondAttribute="bottom" constant="290" id="HIv-hS-y5E"/>
+                <constraint firstAttribute="trailing" secondItem="70u-k5-lP0" secondAttribute="trailing" constant="124" id="aha-E5-xwz"/>
+                <constraint firstItem="70u-k5-lP0" firstAttribute="leading" secondItem="1VS-4E-lvk" secondAttribute="leading" constant="119" id="iso-6E-bZ0"/>
             </constraints>
         </view>
     </objects>
-    <resources>
-        <image name="img.jpg" width="762" height="1049"/>
-    </resources>
 </document>

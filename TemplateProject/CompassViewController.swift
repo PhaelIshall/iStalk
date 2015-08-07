@@ -12,14 +12,10 @@ import Parse
 import MapKit
 
 
-class CompassViewController: UIViewController, UITableViewDelegate{
+class CompassViewController: UIViewController, UITableViewDelegate, MKMapViewDelegate{
  @IBOutlet var textView: UITextView?
     
-    let gpaViewController = GooglePlacesAutocomplete(
-        apiKey: "AIzaSyD_ylpRvrjZdLA-T0Hk5ymMNDX8X9iDlEI",
-        placeType: .Address
-    )
-
+     @IBOutlet weak var mapView: MKMapView!
     var friend: [String: String]? {
         didSet {
             let query = User.query()! //because User is subclassing
@@ -43,11 +39,6 @@ class CompassViewController: UIViewController, UITableViewDelegate{
     var d: Double?
     @IBOutlet weak var meet: UIBarButtonItem!
     
-    @IBAction func map(sender: AnyObject) {
-        gpaViewController.placeDelegate = self
-        presentViewController(gpaViewController, animated: true, completion: nil)
-
-    }
     
     var parseUser: User? {
         didSet {
@@ -58,24 +49,39 @@ class CompassViewController: UIViewController, UITableViewDelegate{
                 self.compass.arrowImageView = self.arrowImageView
                 self.compass.latitudeOfTargetedPoint = self.parseUser!.Coordinate.latitude
                 self.compass.longitudeOfTargetedPoint = self.parseUser!.Coordinate.longitude
-                  getDirection()
                 self.d = User.currentUser()?.Coordinate.distanceInKilometersTo(self.parseUser?.Coordinate!);
                 self.title = String(format:"%.1f", d!) + "km away"
                 
-                if (User.currentUser()?.Coordinate.distanceInKilometersTo(parseUser.Coordinate) < 0.01) {
-                    view.backgroundColor = UIColor.greenColor()
-                }
-                else if (User.currentUser()?.Coordinate.distanceInKilometersTo(parseUser.Coordinate) < 0.05) {
-                    view.backgroundColor = UIColor.orangeColor()
-                }
-                else {
-                    view.backgroundColor = UIColor.redColor()
-                }
+//                if (User.currentUser()?.Coordinate.distanceInKilometersTo(parseUser.Coordinate) < 0.01) {
+//                    view.backgroundColor = UIColor.greenColor()
+//                }
+//                else if (User.currentUser()?.Coordinate.distanceInKilometersTo(parseUser.Coordinate) < 0.05) {
+//                    view.backgroundColor = UIColor.orangeColor()
+//                }
+//                else {
+//                    view.backgroundColor = UIColor.redColor()
+//                }
+                var point = MKPointAnnotation()
+                point.title = parseUser.username
                 
+                point.coordinate = CLLocationCoordinate2DMake(parseUser.Coordinate.latitude, parseUser.Coordinate.longitude)
+                self.mapView.addAnnotation(point)
+                var viewRegion = MKCoordinateRegionMakeWithDistance(point.coordinate, 1900, 1900);
+                var adjustedRegion = mapView.regionThatFits(viewRegion)
+                
+                
+                mapView.setRegion(adjustedRegion, animated: true);
             }
 
         }
     }
+    
+    
+    @IBOutlet weak var directions: UIBarButtonItem!
+    @IBAction func direct(sender: AnyObject) {
+        getDirection()
+    }
+    
     var compass  = GeoPointCompass()
    
     @IBOutlet var arrowImageView: UIImageView! {
@@ -86,6 +92,16 @@ class CompassViewController: UIViewController, UITableViewDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mapView.alpha = 0.5
+        mapView.showsUserLocation = true;
+
+        var zoomLocation: CLLocationCoordinate2D = CLLocationCoordinate2D()
+        zoomLocation.latitude = User.currentUser()!.Coordinate.latitude
+        zoomLocation.longitude = User.currentUser()!.Coordinate.longitude
+        
+        
+        mapView.delegate = self;
+        
       
     }
 
@@ -97,12 +113,9 @@ class CompassViewController: UIViewController, UITableViewDelegate{
     
     
     func getDirection(){
-        
         var myDestination = MKPlacemark(coordinate: CLLocationCoordinate2DMake(parseUser!.Coordinate.latitude, parseUser!.Coordinate.longitude), addressDictionary: nil)
-        var sourcePlacemark = MKPlacemark(coordinate: CLLocationCoordinate2DMake(User.currentUser()!.Coordinate.latitude, User.currentUser()!.Coordinate.longitude), addressDictionary: nil)
-        
-        
-          var source:MKMapItem?
+        //var sourcePlacemark = MKPlacemark(coordinate: CLLocationCoordinate2DMake(User.currentUser()!.Coordinate.latitude, User.currentUser()!.Coordinate.longitude), addressDictionary: nil)
+        //var source:MKMapItem?
         let destMKMap = MKMapItem(placemark: myDestination)!
         
         var directionRequest:MKDirectionsRequest = MKDirectionsRequest()
@@ -118,23 +131,53 @@ class CompassViewController: UIViewController, UITableViewDelegate{
                 println(error)
                 return
             }
-            println("got directions")
-            let route = response.routes[0] as! MKRoute
             
+            self.showRoute(response)
+            let route = response.routes[0] as! MKRoute
+            var msg: String = ""
             for step in route.steps {
-                println("After \(step.distance) metres: \(step.instructions)")
-                //self.textView?.text.stringByAppendingFormat("\n%", "After \(step.distance) metres: \(step.instructions)")
                 if (self.textView?.text == ""){
-                self.textView!.text = self.textView!.text + "After \(step.distance) metres: \(step.instructions)"
+                    msg += "After \(step.distance) metres: \(step.instructions)"
+                    
                 }
                 else {
-                    self.textView!.text = self.textView!.text + "\n After \(step.distance) metres: \(step.instructions)"
-
+                    msg += "\nAfter \(step.distance) metres: \(step.instructions)"
                 }
             }
+            let alertController = UIAlertController(title: "Get directions", message: msg, preferredStyle: .Alert)
+            
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+            self.presentViewController(alertController, animated: true, completion: nil)
+
         }
     }
-
+    
+    func showRoute(response: MKDirectionsResponse) {
+        for route in response.routes as! [MKRoute] {
+            
+          mapView.addOverlay(route.polyline,
+                level: MKOverlayLevel.AboveRoads)
+            
+            for step in route.steps {
+                println(step.instructions)
+            }
+        }
+        let userLocation = mapView.userLocation
+        let region = MKCoordinateRegionMakeWithDistance(
+            userLocation.location.coordinate, 2000, 2000)
+        
+        mapView.setRegion(region, animated: true)
+    }
+    
+    func mapView(mapView: MKMapView!, rendererForOverlay
+        overlay: MKOverlay!) -> MKOverlayRenderer! {
+            let renderer = MKPolylineRenderer(overlay: overlay)
+            
+            renderer.strokeColor = UIColor.blueColor()
+            renderer.lineWidth = 5.0
+            return renderer
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if (segue.identifier == "openMessages") {
@@ -180,16 +223,7 @@ extension CompassViewController: GooglePlacesAutocompleteDelegate {
             self.presentViewController(alertController, animated: true, completion: nil)
             
            
-            
-                        
-
-            //println(place.description)
-            
-            //place.getDetails { details in
-            //  println(details)
-            //}
-            
-        })
+                    })
     }
     
     func placeViewClosed() {

@@ -18,8 +18,6 @@
 		39B140471B58268500FEF6E0 /* CompassViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B140461B58268500FEF6E0 /* CompassViewController.swift */; };
 		39B140491B5826B900FEF6E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39B140481B5826B900FEF6E0 /* AppDelegate.swift */; };
 		4374900EF9096E10E5204D51 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7E537EBF49E5B656BF9DB8B /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		6144C0601B5E95F3007AAFEA /* images.png in Resources */ = {isa = PBXBuildFile; fileRef = 6144C05E1B5E95F3007AAFEA /* images.png */; };
-		6144C0631B5E960A007AAFEA /* ss.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6144C0621B5E960A007AAFEA /* ss.jpg */; };
 		6174CF741B6FCE59003673FB /* GooglePlacesAutocomplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6174CF721B6FCE59003673FB /* GooglePlacesAutocomplete.swift */; };
 		6174CF751B6FCE59003673FB /* GooglePlacesAutocomplete.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6174CF731B6FCE59003673FB /* GooglePlacesAutocomplete.xib */; };
 		617571671B67260800546093 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617571661B67260800546093 /* NavigationController.swift */; };
@@ -40,6 +38,9 @@
 		61D505611B72B2FE00C87994 /* map-pointer2.png in Resources */ = {isa = PBXBuildFile; fileRef = 61D505601B72B2FE00C87994 /* map-pointer2.png */; };
 		61D505631B72B30100C87994 /* envelope48-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 61D505621B72B30100C87994 /* envelope48-2.png */; };
 		61D505651B72B31D00C87994 /* network11-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 61D505641B72B31D00C87994 /* network11-2.png */; };
+		61D505711B73D08600C87994 /* road sign18-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 61D505701B73D08600C87994 /* road sign18-2.png */; };
+		61D505731B73D62800C87994 /* radar-o.gif in Resources */ = {isa = PBXBuildFile; fileRef = 61D505721B73D62800C87994 /* radar-o.gif */; };
+		61D505751B73F9D500C87994 /* ReqViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D505741B73F9D400C87994 /* ReqViewController.swift */; };
 		61D773361B5D6F6100DD9AA2 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61D773351B5D6F6100DD9AA2 /* WebKit.framework */; };
 		624262C11B4460CB00005CE3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 624262B31B4460CB00005CE3 /* LaunchScreen.xib */; };
 		624262C31B4460CB00005CE3 /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 624262B81B4460CB00005CE3 /* ErrorHandling.swift */; };
@@ -166,8 +167,6 @@
 		39B140421B58266600FEF6E0 /* ParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseHelper.swift; sourceTree = "<group>"; };
 		39B140461B58268500FEF6E0 /* CompassViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompassViewController.swift; sourceTree = "<group>"; };
 		39B140481B5826B900FEF6E0 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../TemplateProject/AppDelegate.swift; sourceTree = "<group>"; };
-		6144C05E1B5E95F3007AAFEA /* images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = images.png; sourceTree = SOURCE_ROOT; };
-		6144C0621B5E960A007AAFEA /* ss.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ss.jpg; sourceTree = SOURCE_ROOT; };
 		6174CF711B6FCE59003673FB /* GooglePlacesAutocomplete.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GooglePlacesAutocomplete.h; path = "../../iStalkFacebook-FriendsNearby/GooglePlacesAutocomplete.h"; sourceTree = "<group>"; };
 		6174CF721B6FCE59003673FB /* GooglePlacesAutocomplete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GooglePlacesAutocomplete.swift; path = "../../iStalkFacebook-FriendsNearby/GooglePlacesAutocomplete.swift"; sourceTree = "<group>"; };
 		6174CF731B6FCE59003673FB /* GooglePlacesAutocomplete.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GooglePlacesAutocomplete.xib; path = "../../iStalkFacebook-FriendsNearby/GooglePlacesAutocomplete.xib"; sourceTree = "<group>"; };
@@ -190,6 +189,9 @@
 		61D505601B72B2FE00C87994 /* map-pointer2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map-pointer2.png"; sourceTree = SOURCE_ROOT; };
 		61D505621B72B30100C87994 /* envelope48-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "envelope48-2.png"; sourceTree = SOURCE_ROOT; };
 		61D505641B72B31D00C87994 /* network11-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "network11-2.png"; sourceTree = SOURCE_ROOT; };
+		61D505701B73D08600C87994 /* road sign18-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "road sign18-2.png"; sourceTree = SOURCE_ROOT; };
+		61D505721B73D62800C87994 /* radar-o.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "radar-o.gif"; path = "../../../radar-o.gif"; sourceTree = "<group>"; };
+		61D505741B73F9D400C87994 /* ReqViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReqViewController.swift; sourceTree = "<group>"; };
 		61D773351B5D6F6100DD9AA2 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		624262B41B4460CB00005CE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		624262B81B4460CB00005CE3 /* ErrorHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 				617571631B67106500546093 /* MapViewController */,
 				61AA91FD1B608D1B00ECE9FE /* PushNotificationController.swift */,
 				61CA19C91B5849A80000A5F5 /* MessageViewController.swift */,
+				61D505741B73F9D400C87994 /* ReqViewController.swift */,
 				39B140461B58268500FEF6E0 /* CompassViewController.swift */,
 				618D766E1B700D6E00FD040A /* NotificationViewController.swift */,
 				39B1403C1B58264700FEF6E0 /* FriendFinderViewController.swift */,
@@ -323,14 +326,14 @@
 			children = (
 				61D505601B72B2FE00C87994 /* map-pointer2.png */,
 				61D505621B72B30100C87994 /* envelope48-2.png */,
+				61D505721B73D62800C87994 /* radar-o.gif */,
 				61D505641B72B31D00C87994 /* network11-2.png */,
 				61D5055E1B72B2F400C87994 /* speech-bubble14-3.png */,
+				61D505701B73D08600C87994 /* road sign18-2.png */,
 				61D4F6601B6BE14C00BA3BE8 /* Image003.png */,
 				61D4F6621B6BE3A600BA3BE8 /* Rightarrow.png */,
 				61CA3EB01B6EF65A00ADC325 /* img.jpg */,
-				6144C0621B5E960A007AAFEA /* ss.jpg */,
 				39B140401B58266600FEF6E0 /* arrow.png */,
-				6144C05E1B5E95F3007AAFEA /* images.png */,
 			);
 			name = Assets;
 			path = Helpers;
@@ -568,11 +571,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6144C0631B5E960A007AAFEA /* ss.jpg in Resources */,
 				61D505611B72B2FE00C87994 /* map-pointer2.png in Resources */,
 				61D4F6631B6BE3A600BA3BE8 /* Rightarrow.png in Resources */,
 				39B140331B58247F00FEF6E0 /* Images.xcassets in Resources */,
-				6144C0601B5E95F3007AAFEA /* images.png in Resources */,
+				61D505711B73D08600C87994 /* road sign18-2.png in Resources */,
 				61D5055F1B72B2F400C87994 /* speech-bubble14-3.png in Resources */,
 				6174CF751B6FCE59003673FB /* GooglePlacesAutocomplete.xib in Resources */,
 				61D505651B72B31D00C87994 /* network11-2.png in Resources */,
@@ -580,6 +582,7 @@
 				61D4F6611B6BE14C00BA3BE8 /* Image003.png in Resources */,
 				624262C11B4460CB00005CE3 /* LaunchScreen.xib in Resources */,
 				39B140431B58266600FEF6E0 /* arrow.png in Resources */,
+				61D505731B73D62800C87994 /* radar-o.gif in Resources */,
 				39B140391B58259F00FEF6E0 /* Main.storyboard in Resources */,
 				61D505631B72B30100C87994 /* envelope48-2.png in Resources */,
 			);
@@ -655,6 +658,7 @@
 				617571671B67260800546093 /* NavigationController.swift in Sources */,
 				624262C31B4460CB00005CE3 /* ErrorHandling.swift in Sources */,
 				61CA19C81B5845F10000A5F5 /* Message.swift in Sources */,
+				61D505751B73F9D500C87994 /* ReqViewController.swift in Sources */,
 				39B140491B5826B900FEF6E0 /* AppDelegate.swift in Sources */,
 				6175E68D1B6AB13A00DFC9C2 /* YelpAPI.swift in Sources */,
 				61CA19CA1B5849A80000A5F5 /* MessageViewController.swift in Sources */,

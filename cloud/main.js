@@ -25,7 +25,9 @@ Parse.Cloud.define("sendRequest", function(request, response) {
                    Parse.Cloud.useMasterKey();
                    var userId = request.params.userId;
                    var location = request.params.location;
-                   var message = request.params.message
+                   var message = request.params.message; 
+			var status = request.params.status;
+			
                    
                    var User = Parse.Object.extend('_User'),
                    user = new User({ objectId: userId });
@@ -38,6 +40,8 @@ Parse.Cloud.define("sendRequest", function(request, response) {
                    requests.set("message", message)
                    requests.set("toUser", user);
                    requests.set("fromUser", currentUser);
+ 			requests.set(“request”, status);
                    requests.save();
+
                    response.success();
 });
