@@ -46,12 +46,15 @@ class ReqViewController: UIViewController, UITableViewDelegate, MKMapViewDelegat
         var point = MKPointAnnotation()
         point.title = friend!.username
         point.coordinate = CLLocationCoordinate2DMake(friend!.Coordinate.latitude, friend!.Coordinate.longitude)
+        
         var selectedLocation = MKPointAnnotation()
         selectedLocation.title = "Suggested location"
-         selectedLocation.subtitle = "Your friend selected this location"
+        selectedLocation.subtitle = "Your friend selected this location"
         selectedLocation.coordinate = location!
+        
         self.mapView.addAnnotation(selectedLocation)
         self.mapView.addAnnotation(point)
+        
         var viewRegion = MKCoordinateRegionMakeWithDistance(selectedLocation.coordinate, 1900, 1900);
         var adjustedRegion = mapView.regionThatFits(viewRegion)
         mapView.setRegion(adjustedRegion, animated: true);
@@ -69,9 +72,6 @@ class ReqViewController: UIViewController, UITableViewDelegate, MKMapViewDelegat
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
-    
-    
     
     func getDirection(){
         var myDestination = MKPlacemark(coordinate: location!, addressDictionary: nil)

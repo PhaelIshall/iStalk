@@ -118,7 +118,7 @@ extension NotificationViewController: UITableViewDataSource, UITableViewDelegate
         
         selectedReq = allRequests[indexPath.row]
         cell.request.text = requestsArray[indexPath.row]
-        location = CLLocationCoordinate2DMake(selectedReq!.location.latitude, selectedReq!.location.longitude)
+        location = CLLocationCoordinate2DMake(allRequests[indexPath.row].location.latitude, allRequests[indexPath.row].location.longitude)
         var user = users[indexPath.row]
         friend = user
         
@@ -163,7 +163,6 @@ extension NotificationViewController: UITableViewDataSource, UITableViewDelegate
         self.selectedRequest = requestsArray[indexPath.row]
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        println(requestsArray.count)
         return requestsArray.count ?? 0
     }
     
