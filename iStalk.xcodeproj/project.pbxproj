@@ -39,7 +39,6 @@
 		61D505631B72B30100C87994 /* envelope48-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 61D505621B72B30100C87994 /* envelope48-2.png */; };
 		61D505651B72B31D00C87994 /* network11-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 61D505641B72B31D00C87994 /* network11-2.png */; };
 		61D505711B73D08600C87994 /* road sign18-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 61D505701B73D08600C87994 /* road sign18-2.png */; };
-		61D505731B73D62800C87994 /* radar-o.gif in Resources */ = {isa = PBXBuildFile; fileRef = 61D505721B73D62800C87994 /* radar-o.gif */; };
 		61D505751B73F9D500C87994 /* ReqViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D505741B73F9D400C87994 /* ReqViewController.swift */; };
 		61D773361B5D6F6100DD9AA2 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61D773351B5D6F6100DD9AA2 /* WebKit.framework */; };
 		624262C11B4460CB00005CE3 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 624262B31B4460CB00005CE3 /* LaunchScreen.xib */; };
@@ -190,7 +189,6 @@
 		61D505621B72B30100C87994 /* envelope48-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "envelope48-2.png"; sourceTree = SOURCE_ROOT; };
 		61D505641B72B31D00C87994 /* network11-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "network11-2.png"; sourceTree = SOURCE_ROOT; };
 		61D505701B73D08600C87994 /* road sign18-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "road sign18-2.png"; sourceTree = SOURCE_ROOT; };
-		61D505721B73D62800C87994 /* radar-o.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "radar-o.gif"; path = "../../../radar-o.gif"; sourceTree = "<group>"; };
 		61D505741B73F9D400C87994 /* ReqViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReqViewController.swift; sourceTree = "<group>"; };
 		61D773351B5D6F6100DD9AA2 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		624262B41B4460CB00005CE3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -326,7 +324,6 @@
 			children = (
 				61D505601B72B2FE00C87994 /* map-pointer2.png */,
 				61D505621B72B30100C87994 /* envelope48-2.png */,
-				61D505721B73D62800C87994 /* radar-o.gif */,
 				61D505641B72B31D00C87994 /* network11-2.png */,
 				61D5055E1B72B2F400C87994 /* speech-bubble14-3.png */,
 				61D505701B73D08600C87994 /* road sign18-2.png */,
@@ -582,7 +579,6 @@
 				61D4F6611B6BE14C00BA3BE8 /* Image003.png in Resources */,
 				624262C11B4460CB00005CE3 /* LaunchScreen.xib in Resources */,
 				39B140431B58266600FEF6E0 /* arrow.png in Resources */,
-				61D505731B73D62800C87994 /* radar-o.gif in Resources */,
 				39B140391B58259F00FEF6E0 /* Main.storyboard in Resources */,
 				61D505631B72B30100C87994 /* envelope48-2.png in Resources */,
 			);
