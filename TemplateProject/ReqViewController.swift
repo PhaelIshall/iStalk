@@ -42,14 +42,28 @@ class ReqViewController: UIViewController, UITableViewDelegate, MKMapViewDelegat
         super.viewDidLoad()
         mapView.alpha = 0.5
         mapView.showsUserLocation = true;
+        
         var point = MKPointAnnotation()
         point.title = friend!.username
         point.coordinate = CLLocationCoordinate2DMake(friend!.Coordinate.latitude, friend!.Coordinate.longitude)
+        var selectedLocation = MKPointAnnotation()
+        selectedLocation.title = "Suggested location"
+         selectedLocation.subtitle = "Your friend selected this location"
+        selectedLocation.coordinate = location!
+        self.mapView.addAnnotation(selectedLocation)
         self.mapView.addAnnotation(point)
-        var viewRegion = MKCoordinateRegionMakeWithDistance(point.coordinate, 1900, 1900);
+        var viewRegion = MKCoordinateRegionMakeWithDistance(selectedLocation.coordinate, 1900, 1900);
         var adjustedRegion = mapView.regionThatFits(viewRegion)
         mapView.setRegion(adjustedRegion, animated: true);
         mapView.delegate = self;
+        
+        var place = PFGeoPoint()
+        place.latitude = location!.latitude
+        place.longitude = location!.longitude
+        
+        var dist = friend!.Coordinate.distanceInKilometersTo(place);
+        self.title = "Your friend is " + String(format:"%.1f", dist) + "km from the destination"
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -60,7 +74,7 @@ class ReqViewController: UIViewController, UITableViewDelegate, MKMapViewDelegat
     
     
     func getDirection(){
-        var myDestination = MKPlacemark(coordinate: CLLocationCoordinate2DMake(friend!.Coordinate.latitude, friend!.Coordinate.longitude), addressDictionary: nil)
+        var myDestination = MKPlacemark(coordinate: location!, addressDictionary: nil)
         let destMKMap = MKMapItem(placemark: myDestination)!
         var directionRequest:MKDirectionsRequest = MKDirectionsRequest()
         directionRequest.setSource(MKMapItem.mapItemForCurrentLocation())

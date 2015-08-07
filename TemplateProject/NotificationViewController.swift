@@ -19,7 +19,7 @@ class NotificationViewController: UIViewController{
     
     func getReplies(){
         var q1 = MeetingRequest.query()
-        q1?.whereKey("request", notEqualTo: "Pending")
+        q1?.whereKey("request", notEqualTo: "pending")
         q1?.whereKey("fromUser", equalTo: User.currentUser()!)
         q1?.includeKey("toUser")
         q1!.findObjectsInBackgroundWithBlock { (requests, error) -> Void in
@@ -106,7 +106,7 @@ class NotificationViewController: UIViewController{
         if (segue.identifier == "openReq") {
             let RequestViewController = segue.destinationViewController as! ReqViewController
            RequestViewController.friend = friend
-            //RequestViewController.location =
+            RequestViewController.location = location
         }
     }
     var friend: User?

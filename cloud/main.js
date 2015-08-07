@@ -26,7 +26,8 @@ Parse.Cloud.define("sendRequest", function(request, response) {
                    var userId = request.params.userId;
                    var location = request.params.location;
                    var message = request.params.message; 
-			var status = request.params.status;
+                   var status = request.params.status;
+                   
 			
                    
                    var User = Parse.Object.extend('_User'),
@@ -36,11 +37,12 @@ Parse.Cloud.define("sendRequest", function(request, response) {
                    
                    var Request = Parse.Object.extend('MeetingRequest'),
                    requests = new Request();
+                   requests.set("request", status)
                     requests.set("location", location);
                    requests.set("message", message)
                    requests.set("toUser", user);
                    requests.set("fromUser", currentUser);
- 			requests.set(“request”, status);
+                
                    requests.save();
 
                    response.success();
