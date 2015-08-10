@@ -37,6 +37,16 @@ class MeetingRequest:  PFObject, PFSubclassing {
                 }
             }
     
+//    var objectId: String? {
+//        get{
+//            return self["objectId"] as! String
+//        }
+//        set{
+//            self["objectId"] = newValue
+//        }
+//    }
+
+    
 
     override init() {
         super.init()

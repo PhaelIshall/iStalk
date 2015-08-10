@@ -169,6 +169,14 @@ class PickerViewController: UIViewController, MKMapViewDelegate, UISearchBarDele
             }
            
         }
+        var pushQuery = PFInstallation.query()
+        pushQuery?.whereKey("user", equalTo: friend!)
+        var push = PFPush()
+        push.setQuery(pushQuery)
+        push.setMessage("You have received a meeting request from \(User.currentUser()!.username)")
+        push.sendPushInBackground()
+        
+        
     }
 
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {

@@ -82,12 +82,11 @@ class FriendFinderViewController: UIViewController, CLLocationManagerDelegate  {
         case 0:
             nearbySelected = false
             friendIDs = []
-            
-
         case 1:
             nearbySelected = true
         case 2:
             self.performSegueWithIdentifier("notif", sender: self)
+            segmentedControl.selectedSegmentIndex = 0
         default:
             break;
         }

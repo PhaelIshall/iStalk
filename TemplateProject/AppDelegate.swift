@@ -95,16 +95,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
 //        push.sendPushInBackground()
         
         
-        let pushQuery = MeetingRequest.query()
-        pushQuery!.whereKey("toUser", equalTo: User.currentUser()!)
-        pushQuery?.whereKey("read", equalTo: "false")
+//        let pushQuery = MeetingRequest.query()
+//        pushQuery!.whereKey("toUser", equalTo: User.currentUser()!)
+//        pushQuery?.whereKey("read", equalTo: "false")
         
-        // Send push notification to query
-        let push = PFPush()
-        push.setQuery(pushQuery) // Set our Installation query
-        push.setMessage("You have a new request!")
-        push.sendPushInBackground()
-        
+//        // Send push notification to query
+//        let push = PFPush()
+//        push.setQuery(pushQuery) // Set our Installation query
+//        push.setMessage("You have a new request!")
+//        push.sendPushInBackground()
+//        
         
       PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)  
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)

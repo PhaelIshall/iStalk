@@ -27,7 +27,6 @@
 		619F4BBD1B77158F00C0AAD9 /* right arrows17.png in Resources */ = {isa = PBXBuildFile; fileRef = 619F4BBC1B77158F00C0AAD9 /* right arrows17.png */; };
 		619F4BC51B7717D800C0AAD9 /* CustomPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619F4BC41B7717D800C0AAD9 /* CustomPointAnnotation.swift */; };
 		619F4BC71B771F7900C0AAD9 /* Icon-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 619F4BC61B771F7900C0AAD9 /* Icon-60@3x.png */; };
-		619F4BCF1B77D38800C0AAD9 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 619F4BCE1B77D38800C0AAD9 /* SWRevealViewController.m */; };
 		619F4BD11B77F49200C0AAD9 /* APP_GIF_!.gif in Resources */ = {isa = PBXBuildFile; fileRef = 619F4BD01B77F49200C0AAD9 /* APP_GIF_!.gif */; };
 		61AA91FE1B608D1B00ECE9FE /* PushNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61AA91FD1B608D1B00ECE9FE /* PushNotificationController.swift */; };
 		61AD21B01B67CC0B0052B5C7 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61AD21AF1B67CC0B0052B5C7 /* PickerViewController.swift */; };
@@ -178,8 +177,6 @@
 		619F4BBC1B77158F00C0AAD9 /* right arrows17.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right arrows17.png"; sourceTree = SOURCE_ROOT; };
 		619F4BC41B7717D800C0AAD9 /* CustomPointAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPointAnnotation.swift; sourceTree = "<group>"; };
 		619F4BC61B771F7900C0AAD9 /* Icon-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-60@3x.png"; path = "../../../Icon-60@3x.png"; sourceTree = "<group>"; };
-		619F4BCD1B77D38800C0AAD9 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = SOURCE_ROOT; };
-		619F4BCE1B77D38800C0AAD9 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = SOURCE_ROOT; };
 		619F4BD01B77F49200C0AAD9 /* APP_GIF_!.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "APP_GIF_!.gif"; sourceTree = SOURCE_ROOT; };
 		61AA91FD1B608D1B00ECE9FE /* PushNotificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationController.swift; sourceTree = "<group>"; };
 		61AD21AF1B67CC0B0052B5C7 /* PickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
@@ -272,20 +269,10 @@
 			children = (
 				6175E6901B6ABA6500DFC9C2 /* BusinessesViewController.swift */,
 				6175E68C1B6AB13A00DFC9C2 /* YelpAPI.swift */,
-				619F4BCC1B77D37200C0AAD9 /* New Group */,
 				6175E68E1B6ABA4700DFC9C2 /* Business.swift */,
 				61AD21AF1B67CC0B0052B5C7 /* PickerViewController.swift */,
 			);
 			name = PickerViewController;
-			sourceTree = "<group>";
-		};
-		619F4BCC1B77D37200C0AAD9 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-				619F4BCD1B77D38800C0AAD9 /* SWRevealViewController.h */,
-				619F4BCE1B77D38800C0AAD9 /* SWRevealViewController.m */,
-			);
-			name = "New Group";
 			sourceTree = "<group>";
 		};
 		61CA19CB1B58B18A0000A5F5 /* View Controllers */ = {
@@ -660,7 +647,6 @@
 				39B140451B58266600FEF6E0 /* ParseHelper.swift in Sources */,
 				6175E6911B6ABA6500DFC9C2 /* BusinessesViewController.swift in Sources */,
 				39B140301B58247F00FEF6E0 /* GeoPointCompass.m in Sources */,
-				619F4BCF1B77D38800C0AAD9 /* SWRevealViewController.m in Sources */,
 				618D766F1B700D6E00FD040A /* NotificationViewController.swift in Sources */,
 				617571671B67260800546093 /* NavigationController.swift in Sources */,
 				624262C31B4460CB00005CE3 /* ErrorHandling.swift in Sources */,

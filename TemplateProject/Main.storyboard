@@ -151,7 +151,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="uDE-TX-zmG" id="rvu-gt-qUv"/>
-                        <segue destination="PDN-nL-es4" kind="show" identifier="openReq" id="4XU-cO-XtI"/>
+                        <segue destination="PDN-nL-es4" kind="presentation" identifier="openReq" id="4XU-cO-XtI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NlX-FL-jsf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -513,7 +513,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LEO-JP-eek">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LEO-JP-eek">
                                 <rect key="frame" x="6" y="64" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="I20-9U-Zk9"/>
@@ -525,41 +525,49 @@
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="TEN-96-Nbc"/>
                                     <barButtonItem image="envelope48-2.png" id="yEW-yl-89F">
+                                        <color key="tintColor" red="0.16102855190000001" green="0.72544456869999996" blue="0.63643313189999995" alpha="0.60999999999999999" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <segue destination="akb-Ei-exk" kind="show" identifier="openMessages" id="qDw-fB-zJz"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="gg0-41-56E"/>
                                     <barButtonItem title="Request details" id="1LW-XF-wVL">
+                                        <color key="tintColor" red="0.16102855190000001" green="0.72544456869999996" blue="0.63643313189999995" alpha="0.60999999999999999" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <action selector="showMenu:" destination="PDN-nL-es4" id="6TI-Ik-Qjv"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="G8s-Zh-9IN"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Y0p-d3-05o"/>
                                 </items>
                             </toolbar>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="b6k-eH-yh1">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="b6k-eH-yh1">
                                 <rect key="frame" x="0.0" y="64" width="600" height="497"/>
                             </mapView>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2OM-SF-coT">
-                                <rect key="frame" x="0.0" y="600" width="584" height="63"/>
+                                <rect key="frame" x="0.0" y="300" width="600" height="63"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GiA-kO-YnM">
-                                        <rect key="frame" x="525" y="28" width="51" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GiA-kO-YnM">
+                                        <rect key="frame" x="541" y="28" width="51" height="30"/>
                                         <state key="normal" title="Decline">
                                             <color key="titleColor" red="0.88543063002680966" green="0.041335810051282958" blue="0.011277420396767648" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="declinePressed:" destination="PDN-nL-es4" eventType="touchUpInside" id="nX1-JV-zX8"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EdJ-hz-BsW">
-                                        <rect key="frame" x="525" y="5" width="49" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EdJ-hz-BsW">
+                                        <rect key="frame" x="541" y="5" width="49" height="30"/>
                                         <state key="normal" title="Accept">
                                             <color key="titleColor" red="0.15704544168724538" green="0.43567778150134051" blue="0.10579442371378484" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="acceptPressed:" destination="PDN-nL-es4" eventType="touchUpInside" id="VUj-QX-WAS"/>
+                                        </connections>
                                     </button>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ilZ-Dw-QoC">
-                                        <rect key="frame" x="85" y="-1" width="440" height="63"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ilZ-Dw-QoC">
+                                        <rect key="frame" x="85" y="-1" width="456" height="63"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure </string>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="alert"/>
@@ -669,7 +677,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="NXd-Vr-dZL"/>
-        <segue reference="fGR-Bd-n8c"/>
+        <segue reference="qDw-fB-zJz"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>

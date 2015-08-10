@@ -114,9 +114,8 @@ class NotificationViewController: UIViewController{
             let RequestViewController = segue.destinationViewController as! ReqViewController
            RequestViewController.friend = friend
             RequestViewController.location = location
-            
-            
             RequestViewController.txt = msg
+            RequestViewController.meetingRequest = selectedReq
         }
     }
     var friend: User?
@@ -136,10 +135,7 @@ extension NotificationViewController: UITableViewDataSource, UITableViewDelegate
             cell = tableView.dequeueReusableCellWithIdentifier("requestCell") as! NotificationTableViewCell
 
         }
-        
-        
-//        cell.msg.numberOfLines = 0
-//        cell.msg.lineBreakMode = NSLineBreakMode.ByWordWrapping
+
         selectedReq = allRequests[indexPath.row]
         cell.request.text = requestsArray[indexPath.row]
         
@@ -161,12 +157,14 @@ extension NotificationViewController: UITableViewDataSource, UITableViewDelegate
         cell.Picture.sd_setImageWithURL(url, completed: nil)
         cell.Picture.layer.cornerRadius = cell.Picture.frame.size.width / 2;
         cell.Picture.clipsToBounds = true;
+        
+        println(cell.reuseIdentifier)
         return cell
     }
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
       
-        if tableView.cellForRowAtIndexPath(indexPath)?.backgroundColor != UIColor.grayColor() {
+        if tableView.cellForRowAtIndexPath(indexPath)?.reuseIdentifier == "notifCell" {
             let accept = UITableViewRowAction(style: .Normal, title: "Accept") { action, index in
                 self.selectedReq!.setObject("Accepted", forKey: "request")
                 self.selectedReq!.save()

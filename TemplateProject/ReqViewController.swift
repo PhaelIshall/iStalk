@@ -14,6 +14,8 @@ import QuartzCore
 
 class ReqViewController: UIViewController, UITableViewDelegate, MKMapViewDelegate{
     
+    var meetingRequest: MeetingRequest?
+    
     @IBOutlet weak var msg: UITextView?
     
     var txt: String?
@@ -23,6 +25,19 @@ class ReqViewController: UIViewController, UITableViewDelegate, MKMapViewDelegat
     @IBOutlet weak var accept: UIButton?
     
     @IBOutlet weak var decline: UIButton?
+    
+    @IBAction func acceptPressed(sender: AnyObject){
+        self.meetingRequest!.setObject("Accepted", forKey: "request")
+        self.meetingRequest!.save()
+
+    }
+    
+    @IBAction func declinePressed(sender: AnyObject){
+        self.meetingRequest!.setObject("Denied", forKey: "request")
+        self.meetingRequest!.save()
+        var obj = PFObject(withoutDataWithClassName: "MeetingRequest", objectId: meetingRequest?.objectId)
+        obj.deleteEventually()
+    }
     
     @IBOutlet weak var expand: UIBarButtonItem!
     
@@ -36,6 +51,7 @@ class ReqViewController: UIViewController, UITableViewDelegate, MKMapViewDelegat
 //        var transition = CATransition()
 //        transition.duration = 10
         if (!down){
+            
             view.frame = CGRectMake( 0, 380, view.frame.size.width , view.frame.size.height );
             down = true
         }
@@ -74,6 +90,8 @@ class ReqViewController: UIViewController, UITableViewDelegate, MKMapViewDelegat
         super.viewDidLoad()
         friendName.text = "\(friend!.username!) said: "
         mapView.alpha = 1
+        arrowImageView.removeFromSuperview()
+        self.view.addSubview(arrowImageView)
         mapView.showsUserLocation = true;
       
         msg?.text = txt

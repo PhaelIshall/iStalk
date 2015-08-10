@@ -68,6 +68,16 @@ class MessageViewController: JSQMessagesViewController {
             self.messages.append(message as! Message)
             self.finishSendingMessageAnimated(true)
         }
+        
+        var pushQuery = PFInstallation.query()
+        pushQuery?.whereKey("user", equalTo: friend!)
+        
+        
+        var push = PFPush()
+        push.setQuery(pushQuery)
+        push.setMessage("New message from \(User.currentUser()!.username)")
+        push.sendPushInBackground()
+        
     
     
     }
