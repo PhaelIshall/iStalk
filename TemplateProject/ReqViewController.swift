@@ -1,11 +1,3 @@
-//
-//  CompassViewController.swift
-//  TemplateProject
-//
-//  Created by ALAA AL MUTAWA on 7/14/15.
-//  Copyright (c) 2015 Make School. All rights reserved.
-//
-
 import UIKit
 import CoreLocation
 import Parse
@@ -16,7 +8,7 @@ class ReqViewController: UIViewController, UITableViewDelegate, MKMapViewDelegat
     
     var meetingRequest: MeetingRequest?
     
-    @IBOutlet weak var msg: UITextView?
+    @IBOutlet weak var msg: UITextView!
     
     var txt: String?
     
@@ -26,43 +18,77 @@ class ReqViewController: UIViewController, UITableViewDelegate, MKMapViewDelegat
     
     @IBOutlet weak var decline: UIButton?
     
+    var compass  = GeoPointCompass()
+    
+    @IBOutlet var arrowImageView: UIImageView! {
+        didSet {
+            arrowImageView.image = UIImage(named: "Icon-60@3x.png")
+        }
+    }
+    
+    
     @IBAction func acceptPressed(sender: AnyObject){
         self.meetingRequest!.setObject("Accepted", forKey: "request")
         self.meetingRequest!.save()
-
+        accept?.hidden
+        decline?.hidden
     }
+    
     
     @IBAction func declinePressed(sender: AnyObject){
         self.meetingRequest!.setObject("Denied", forKey: "request")
         self.meetingRequest!.save()
-        var obj = PFObject(withoutDataWithClassName: "MeetingRequest", objectId: meetingRequest?.objectId)
-        obj.deleteEventually()
+//        var obj = PFObject(withoutDataWithClassName: "MeetingRequest", objectId: meetingRequest?.objectId)
+//        obj.deleteEventually()
+        accept?.hidden
+        decline?.hidden
     }
     
     @IBOutlet weak var expand: UIBarButtonItem!
     
     @IBAction func showMenu(sender: AnyObject) {
-        slide(menu)
+        if (meetingRequest?.status != "pending"){
+            accept?.hidden
+            decline?.hidden
+        }
+      slide(menu)
+
     }
     
     var down: Bool = false
     
     func slide(view: UIView){
-//        var transition = CATransition()
-//        transition.duration = 10
         if (!down){
-            
             view.frame = CGRectMake( 0, 380, view.frame.size.width , view.frame.size.height );
             down = true
+            println(meetingRequest)
+            println(meetingRequest?.status)
+            if (meetingRequest?.status == "Accepted"){
+                if meetingRequest?.toUser.objectId == User.currentUser()?.objectId{
+                    var alert: UIAlertView = UIAlertView(title: "Details", message: "You have accepted the request", delegate: nil, cancelButtonTitle: "OK");
+                    alert.show()
+                }
+                else{
+                    var alert: UIAlertView = UIAlertView(title: "Details", message: "\(meetingRequest!.toUser!.username!) has accepted the request", delegate: nil, cancelButtonTitle: "OK");
+                    alert.show()
+                }
+            }
+            else if (meetingRequest?.status == "Denied"){
+                if meetingRequest?.toUser.objectId == User.currentUser()?.objectId{
+                    var alert: UIAlertView = UIAlertView(title: "Details", message: "You have declined the request", delegate: nil, cancelButtonTitle: "OK");
+                    alert.show()
+                }
+                else{
+                    var alert: UIAlertView = UIAlertView(title: "Details", message: "\(meetingRequest!.toUser!.username!) has declined the request", delegate: nil, cancelButtonTitle: "OK");
+                    alert.show()
+                }
+
+            }
         }
         else{
             view.frame = CGRectMake( 500, 380, view.frame.size.width , view.frame.size.height  );
             down = false
         }
-//        transition.type = kCATransitionPush;
-//        transition.subtype = kCATransitionFromTop ;
-        //view.layer.addAnimation(transition, forKey: nil)
-        //transition.delegate = self;
     }
     
     @IBOutlet weak var menu: UIView!
@@ -77,29 +103,26 @@ class ReqViewController: UIViewController, UITableViewDelegate, MKMapViewDelegat
     }
     
     var location: CLLocationCoordinate2D?
-    var compass  = GeoPointCompass()
-    
-    @IBOutlet var arrowImageView: UIImageView! {
-        didSet {
-            arrowImageView.image = UIImage(named: "Icon-60@3x.png")
-        }
-    }
-    
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         friendName.text = "\(friend!.username!) said: "
+        msg.text = txt
         mapView.alpha = 1
         arrowImageView.removeFromSuperview()
         self.view.addSubview(arrowImageView)
+        
         mapView.showsUserLocation = true;
-      
-        msg?.text = txt
         var point = MKPointAnnotation()
         point.title = friend!.username
         point.coordinate = CLLocationCoordinate2DMake(friend!.Coordinate.latitude, friend!.Coordinate.longitude)
         
+        self.compass.arrowImageView = self.arrowImageView
+        self.compass.latitudeOfTargetedPoint = self.friend!.Coordinate.latitude
+        self.compass.longitudeOfTargetedPoint = self.friend!.Coordinate.longitude
+        
         var selectedLocation = MKPointAnnotation()
+
         selectedLocation.title = "Suggested location"
         selectedLocation.subtitle = "Your friend selected this location"
       
@@ -118,8 +141,7 @@ class ReqViewController: UIViewController, UITableViewDelegate, MKMapViewDelegat
         place.longitude = location!.longitude
         
         var dist = friend!.Coordinate.distanceInKilometersTo(place);
-        self.title = "Your friend is " + String(format:"%.1f", dist) + "km from the destination"
-
+        self.title = String(format:"%.1f", dist) + "km from the destination"
     }
     
     override func didReceiveMemoryWarning() {

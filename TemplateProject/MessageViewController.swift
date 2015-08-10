@@ -21,7 +21,7 @@ class MessageViewController: JSQMessagesViewController {
         }
     }
 
-    var placeholder: UIImage = UIImage(named: "img.jpg")!
+    var placeholder: UIImage = UIImage(named: "Icon-60@3x.png")!
     var messages = [Message](){
         didSet {
             if self.isViewLoaded() {
@@ -75,19 +75,12 @@ class MessageViewController: JSQMessagesViewController {
         
         var push = PFPush()
         push.setQuery(pushQuery)
-        push.setMessage("New message from \(User.currentUser()!.username)")
+        push.setMessage("New message from \(User.currentUser()!.username!)")
         push.sendPushInBackground()
         
     
     
-    }
-    
-//    func receivedMessagePressed(sender: UIBarButtonItem) {
-//        // Simulate reciving message
-//        showTypingIndicator = !showTypingIndicator
-//        scrollToBottomAnimated(true)
-//    }
-    
+    }    
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
         return self.messages.count

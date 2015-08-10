@@ -22,7 +22,6 @@ class NotificationViewController: UIViewController{
         q1?.whereKey("fromUser", equalTo: User.currentUser()!)
         q1?.includeKey("toUser")
         q1!.findObjectsInBackgroundWithBlock { (requests, error) -> Void in
-            
             if let req = requests as? [MeetingRequest] {
                 
                 for entry in req {
@@ -34,11 +33,8 @@ class NotificationViewController: UIViewController{
                     self.read.append(r)
                 }
                 self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Left)
-
             }
-            
         }
-
     }
     
     var read: [String] = []
@@ -48,7 +44,7 @@ class NotificationViewController: UIViewController{
         requestsArray = []
         users = []
         getNotifications()
-      // self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Left)
+       self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Left)
 
         refreshControl.endRefreshing()
     }
@@ -73,8 +69,6 @@ class NotificationViewController: UIViewController{
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
-        
     }
     
     @IBOutlet var tableView : UITableView!{
@@ -115,6 +109,7 @@ class NotificationViewController: UIViewController{
            RequestViewController.friend = friend
             RequestViewController.location = location
             RequestViewController.txt = msg
+            println(msg)
             RequestViewController.meetingRequest = selectedReq
         }
     }
@@ -158,7 +153,7 @@ extension NotificationViewController: UITableViewDataSource, UITableViewDelegate
         cell.Picture.layer.cornerRadius = cell.Picture.frame.size.width / 2;
         cell.Picture.clipsToBounds = true;
         
-        println(cell.reuseIdentifier)
+        println(cell.reuseIdentifier!)
         return cell
     }
     
@@ -188,24 +183,18 @@ extension NotificationViewController: UITableViewDataSource, UITableViewDelegate
         else{
             return []
         }
-       
     }
     
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        
-        
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var user = users[indexPath.row]
         friend = user
-        
         read[indexPath.row] = "true"
         self.tableView.cellForRowAtIndexPath(indexPath)?.backgroundColor = UIColor.whiteColor()
-
         msg = allRequests[indexPath.row].message
-
         self.selectedRequest = requestsArray[indexPath.row]
         self.location = CLLocationCoordinate2DMake(allRequests[indexPath.row].location.latitude, allRequests[indexPath.row].location.longitude)
         self.performSegueWithIdentifier("openReq", sender: self)

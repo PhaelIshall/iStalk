@@ -151,7 +151,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="uDE-TX-zmG" id="rvu-gt-qUv"/>
-                        <segue destination="PDN-nL-es4" kind="presentation" identifier="openReq" id="4XU-cO-XtI"/>
+                        <segue destination="PDN-nL-es4" kind="show" identifier="openReq" id="4XU-cO-XtI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NlX-FL-jsf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -458,7 +458,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GPY-ZU-mn3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2907" y="134"/>
+            <point key="canvasLocation" x="2587" y="268"/>
         </scene>
         <!--Pick a place to meet your friend-->
         <scene sceneID="ehQ-KT-fPr">
@@ -513,7 +513,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LEO-JP-eek">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" highlighted="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LEO-JP-eek">
                                 <rect key="frame" x="6" y="64" width="100" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="I20-9U-Zk9"/>
@@ -540,7 +540,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Y0p-d3-05o"/>
                                 </items>
                             </toolbar>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="b6k-eH-yh1">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="b6k-eH-yh1">
                                 <rect key="frame" x="0.0" y="64" width="600" height="497"/>
                             </mapView>
                             <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2OM-SF-coT">
@@ -566,13 +566,13 @@
                                             <action selector="acceptPressed:" destination="PDN-nL-es4" eventType="touchUpInside" id="VUj-QX-WAS"/>
                                         </connections>
                                     </button>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ilZ-Dw-QoC">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="message" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ilZ-Dw-QoC">
                                         <rect key="frame" x="85" y="-1" width="456" height="63"/>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure </string>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.60999999999999999" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardAppearance="alert"/>
                                     </textView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text=",mbsdkdaslkf" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Udy-sI-IR5">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="NAME OF FRIEND" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Udy-sI-IR5">
                                         <rect key="frame" x="0.0" y="0.0" width="87" height="63"/>
                                         <color key="tintColor" red="0.36122097320000002" green="0.659632624" blue="0.57049284209999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -585,17 +585,17 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.56561619196073076" green="0.76769723211214858" blue="0.92990742292225204" alpha="0.60999999999999999" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="ilZ-Dw-QoC" secondAttribute="bottom" constant="1" id="0Ka-be-fwf"/>
+                                    <constraint firstItem="EdJ-hz-BsW" firstAttribute="leading" secondItem="ilZ-Dw-QoC" secondAttribute="trailing" id="3tF-hZ-QaX"/>
                                     <constraint firstItem="GiA-kO-YnM" firstAttribute="top" secondItem="2OM-SF-coT" secondAttribute="top" constant="28" id="6xz-R0-IeX"/>
                                     <constraint firstItem="EdJ-hz-BsW" firstAttribute="top" secondItem="2OM-SF-coT" secondAttribute="top" constant="5" id="LoT-P9-fN6"/>
                                     <constraint firstItem="EdJ-hz-BsW" firstAttribute="leading" secondItem="GiA-kO-YnM" secondAttribute="leading" id="MMg-XX-6W8"/>
-                                    <constraint firstItem="ilZ-Dw-QoC" firstAttribute="top" secondItem="2OM-SF-coT" secondAttribute="top" constant="-1" id="Rbk-ta-v0z"/>
-                                    <constraint firstItem="GiA-kO-YnM" firstAttribute="leading" secondItem="ilZ-Dw-QoC" secondAttribute="trailing" id="UFI-qF-jcN"/>
-                                    <constraint firstAttribute="bottom" secondItem="ilZ-Dw-QoC" secondAttribute="bottom" constant="1" id="Ul8-6N-2yv"/>
                                     <constraint firstAttribute="bottom" secondItem="Udy-sI-IR5" secondAttribute="bottom" id="e2f-vE-mEz"/>
                                     <constraint firstItem="GiA-kO-YnM" firstAttribute="trailing" secondItem="2OM-SF-coT" secondAttribute="trailingMargin" id="ek1-MM-CeA"/>
+                                    <constraint firstItem="ilZ-Dw-QoC" firstAttribute="top" secondItem="2OM-SF-coT" secondAttribute="top" constant="-1" id="iPZ-9y-mf2"/>
+                                    <constraint firstItem="ilZ-Dw-QoC" firstAttribute="leading" secondItem="2OM-SF-coT" secondAttribute="leading" constant="85" id="mF2-Jt-4fv"/>
                                     <constraint firstItem="Udy-sI-IR5" firstAttribute="leading" secondItem="2OM-SF-coT" secondAttribute="leading" id="q90-CM-XaB"/>
                                     <constraint firstItem="Udy-sI-IR5" firstAttribute="top" secondItem="2OM-SF-coT" secondAttribute="top" id="yAU-ys-FWG"/>
-                                    <constraint firstItem="ilZ-Dw-QoC" firstAttribute="leading" secondItem="2OM-SF-coT" secondAttribute="leading" constant="85" id="ymN-oN-kFp"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -676,7 +676,7 @@
         <image name="right arrows17.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NXd-Vr-dZL"/>
+        <segue reference="EdH-tr-UpA"/>
         <segue reference="qDw-fB-zJz"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>

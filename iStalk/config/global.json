@@ -1,0 +1,14 @@
+{
+  "global": {
+    "parseVersion": "1.5.0"
+  },
+  "applications": {
+    "_default": {
+      "link": "iStalk"
+    },
+    "iStalk": {
+      "applicationId": "WN6bWYA5G0Nnsm5FF4HMNMmjmDaG39261z0lsnZt",
+      "masterKey": "25a9HeBU2WrWz1NModb9fRfmVlz5vpkqOzdwZZ5X"
+    }
+  }
+}

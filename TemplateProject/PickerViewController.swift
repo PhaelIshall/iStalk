@@ -170,10 +170,10 @@ class PickerViewController: UIViewController, MKMapViewDelegate, UISearchBarDele
            
         }
         var pushQuery = PFInstallation.query()
-        pushQuery?.whereKey("user", equalTo: friend!)
+        pushQuery?.whereKey("user", equalTo: selectedFriend!)
         var push = PFPush()
         push.setQuery(pushQuery)
-        push.setMessage("You have received a meeting request from \(User.currentUser()!.username)")
+        push.setMessage("You have received a meeting request from \(User.currentUser()!.username!)")
         push.sendPushInBackground()
         
         

@@ -1,0 +1,67 @@
+PODS:
+  - Bolts (1.2.0):
+    - Bolts/AppLinks (= 1.2.0)
+    - Bolts/Tasks (= 1.2.0)
+  - Bolts/AppLinks (1.2.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.2.0)
+  - Bond (3.9.0)
+  - ConvenienceKit (0.2.0)
+  - FBSDKCoreKit (4.4.0):
+    - Bolts (~> 1.1)
+    - FBSDKCoreKit/arc (= 4.4.0)
+    - FBSDKCoreKit/no-arc (= 4.4.0)
+  - FBSDKCoreKit/arc (4.4.0):
+    - Bolts (~> 1.1)
+  - FBSDKCoreKit/no-arc (4.4.0):
+    - Bolts (~> 1.1)
+    - FBSDKCoreKit/arc
+  - FBSDKLoginKit (4.4.0):
+    - FBSDKCoreKit
+  - GooglePlacesAutocomplete (0.3.0)
+  - JSQMessagesViewController (7.1.0):
+    - JSQSystemSoundPlayer (~> 2.0.1)
+  - JSQSystemSoundPlayer (2.0.1)
+  - Parse (1.7.5.3):
+    - Bolts/Tasks (>= 1.2.0)
+  - ParseFacebookUtilsV4 (1.7.5.3):
+    - Bolts/Tasks (>= 1.2.0)
+    - FBSDKCoreKit (~> 4.0)
+    - FBSDKLoginKit (~> 4.0)
+    - Parse (~> 1.7.5.3)
+  - ParseUI (1.1.4):
+    - Parse (~> 1.7)
+  - SDWebImage (3.7.3):
+    - SDWebImage/Core (= 3.7.3)
+  - SDWebImage/Core (3.7.3)
+  - UIColor+FlatColors (0.0.2)
+
+DEPENDENCIES:
+  - Bond
+  - ConvenienceKit
+  - FBSDKCoreKit
+  - FBSDKLoginKit
+  - GooglePlacesAutocomplete
+  - JSQMessagesViewController
+  - Parse
+  - ParseFacebookUtilsV4
+  - ParseUI
+  - SDWebImage
+  - UIColor+FlatColors
+
+SPEC CHECKSUMS:
+  Bolts: d176cb1e0012175589e389a9db49b85e27787576
+  Bond: 994ccc56aebfe2707d7b5e76f6d665a5beefa45b
+  ConvenienceKit: 947032f82c3d419d107e0cbde1fcb725e9c7ed62
+  FBSDKCoreKit: 75bdd75c980e811db218488d99dd93b7740f4474
+  FBSDKLoginKit: 02a9254a4c132412fa03577b0d53e936d068a7fb
+  GooglePlacesAutocomplete: 7694636fce561c9d8ac807b8e490d299a730a633
+  JSQMessagesViewController: ca11f86fa68ca70835f05e169df9244147c1dc40
+  JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
+  Parse: 373adbb1ad2e34d383542c3b28f678c49ebe4881
+  ParseFacebookUtilsV4: ea5db22e87b91cbf99b9d156642e2b97a4db7d51
+  ParseUI: d1228541b02a36a7354c8f47747f5f7a89cf1ff0
+  SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
+  UIColor+FlatColors: 6c699df7a575281794c688c64cee6c44fd1f93b4
+
+COCOAPODS: 0.38.2

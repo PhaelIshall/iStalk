@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PopupViewController" customModule="iStalk" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Rightarrow.png" translatesAutoresizingMaskIntoConstraints="NO" id="DwS-zf-Xz9">
+                    <rect key="frame" x="105" y="43" width="390" height="386"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0fN-LP-L93">
+                    <rect key="frame" x="290" y="500" width="40" height="30"/>
+                    <state key="normal" title="Close">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="closePopup:" destination="-1" eventType="touchUpInside" id="ZhF-qR-6UM"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="centerY" secondItem="0fN-LP-L93" secondAttribute="centerY" constant="-215" id="2we-Cb-IGJ"/>
+                <constraint firstAttribute="trailing" secondItem="0fN-LP-L93" secondAttribute="trailing" constant="270" id="8T8-wS-jJ5"/>
+                <constraint firstAttribute="centerX" secondItem="DwS-zf-Xz9" secondAttribute="centerX" id="V1K-Hr-qh5"/>
+                <constraint firstAttribute="centerY" secondItem="DwS-zf-Xz9" secondAttribute="centerY" constant="64" id="gxQ-SY-qHj"/>
+            </constraints>
+        </view>
+    </objects>
+    <resources>
+        <image name="Rightarrow.png" width="485" height="1000"/>
+    </resources>
+</document>

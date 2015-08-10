@@ -37,7 +37,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
                 let tabBarController = storyboard.instantiateViewControllerWithIdentifier("InitialVC") as! UIViewController
                
                 self.window?.rootViewController!.presentViewController(tabBarController, animated: true, completion: nil)
+                self.pushNotificationController = PushNotificationController()
                 
+                
+                let types:UIUserNotificationType = (.Alert | .Badge | .Sound)
+                let settings:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: types, categories: nil)
+                
+                UIApplication.sharedApplication().registerUserNotificationSettings(settings)
+                UIApplication.sharedApplication().registerForRemoteNotifications()
                 self.initLocationManager()
             }
         }
@@ -47,13 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         User.registerSubclass()
     Parse.setApplicationId("WN6bWYA5G0Nnsm5FF4HMNMmjmDaG39261z0lsnZt", clientKey: "9TSZM0QV3TKKqQMXjr2vu9S22RdkilPyPLWHY7bH")
     GMSServices.provideAPIKey("AIzaSyD_ylpRvrjZdLA-T0Hk5ymMNDX8X9iDlEI")
-        
-//        User.logInWithUsername("user", password: "user")
-//        if let user = User.currentUser() {
-//            println("Log in successful")
-//        } else {
-//            println("No logged in user ")
-//        }
+
         let user = User.currentUser()
         let startViewController: UIViewController;
         if (user != nil) {
@@ -65,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             let loginViewController = PFLogInViewController()
             loginViewController.fields = .Facebook
             loginViewController.facebookPermissions = ["user_friends"]
-            loginViewController.logInView?.backgroundColor = UIColor(patternImage: UIImage(named: "img.jpg")!)
+            loginViewController.logInView?.backgroundColor = UIColor(patternImage: UIImage(named: "Icon-60@3x.png")!)
           
             loginViewController.delegate = parseLoginHelper
             loginViewController.signUpController?.delegate = parseLoginHelper
@@ -80,14 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             initLocationManager()
         }
         
-        self.pushNotificationController = PushNotificationController()
-        
-        
-            let types:UIUserNotificationType = (.Alert | .Badge | .Sound)
-            let settings:UIUserNotificationSettings = UIUserNotificationSettings(forTypes: types, categories: nil)
-            
-            application.registerUserNotificationSettings(settings)
-            application.registerForRemoteNotifications()
+     
         
 //        let push = PFPush()
 //        push.setChannel("News")

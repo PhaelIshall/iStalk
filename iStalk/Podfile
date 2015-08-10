@@ -1,0 +1,17 @@
+platform :ios, '8.0'
+use_frameworks!
+
+pod 'JSQMessagesViewController'
+pod 'SDWebImage'
+
+pod 'FBSDKCoreKit'
+pod 'FBSDKLoginKit'
+
+pod 'GooglePlacesAutocomplete'
+
+pod 'Parse'
+pod 'ParseUI'
+pod 'ParseFacebookUtilsV4'
+pod 'Bond'
+pod 'ConvenienceKit'
+pod 'UIColor+FlatColors'

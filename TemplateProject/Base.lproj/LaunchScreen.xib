@@ -9,21 +9,7 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="1VS-4E-lvk">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="APP_GIF_!.gif" translatesAutoresizingMaskIntoConstraints="NO" id="9BT-Ah-L7C">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                </imageView>
-            </subviews>
             <color key="backgroundColor" red="0.98614104121941504" green="0.96763665500465468" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-            <constraints>
-                <constraint firstAttribute="trailing" secondItem="9BT-Ah-L7C" secondAttribute="trailing" id="Brm-j7-2aW"/>
-                <constraint firstItem="9BT-Ah-L7C" firstAttribute="leading" secondItem="1VS-4E-lvk" secondAttribute="leading" id="CS7-mW-p2l"/>
-                <constraint firstItem="9BT-Ah-L7C" firstAttribute="top" secondItem="1VS-4E-lvk" secondAttribute="top" id="Lzp-Ii-qsQ"/>
-                <constraint firstAttribute="bottom" secondItem="9BT-Ah-L7C" secondAttribute="bottom" id="f8f-SA-p6r"/>
-            </constraints>
         </view>
     </objects>
-    <resources>
-        <image name="APP_GIF_!.gif" width="107" height="190"/>
-    </resources>
 </document>
