@@ -76,23 +76,32 @@ class CompassViewController: UIViewController, UITableViewDelegate, MKMapViewDel
         }
     }
     
-    
-    @IBOutlet weak var directions: UIBarButtonItem!
     @IBAction func direct(sender: AnyObject) {
+        
         getDirection()
     }
+ 
+    
+    @IBOutlet weak var directions: UIBarButtonItem!
     
     var compass  = GeoPointCompass()
    
     @IBOutlet var arrowImageView: UIImageView! {
         didSet {
-            arrowImageView.image = UIImage(named: "Rightarrow.png")
+            arrowImageView.image = UIImage(named: "Icon-60@3x.png")
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        mapView.alpha = 0.5
+        mapView.alpha = 1
+        
+        arrowImageView.removeFromSuperview()
+        self.view.addSubview(arrowImageView)
+//        
+//        self.view.addConstraint(NSLayoutConstraint(item: arrowImageView, attribute: .Left, relatedBy: .Equal, toItem: self.view, attribute: .Left, multiplier: 1.0, constant: 55))
+//        self.view.addConstraint(NSLayoutConstraint(item: arrowImageView, attribute: .Top, relatedBy: .Equal, toItem: self.view, attribute: .Top, multiplier: 1.0, constant: 75))
+//        
         mapView.showsUserLocation = true;
 
         var zoomLocation: CLLocationCoordinate2D = CLLocationCoordinate2D()
@@ -113,9 +122,20 @@ class CompassViewController: UIViewController, UITableViewDelegate, MKMapViewDel
     
     
     func getDirection(){
+        
+        var alert: UIAlertView = UIAlertView(title: "Getting directions", message: "Please wait, this will take a few seconds...", delegate: nil, cancelButtonTitle: "Cancel");
+        var loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRectMake(50, 10, 37, 37)) as UIActivityIndicatorView
+        loadingIndicator.center = self.view.center;
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.Gray
+        loadingIndicator.startAnimating();
+        
+        alert.setValue(loadingIndicator, forKey: "accessoryView")
+        loadingIndicator.startAnimating()
+        
+        alert.show();
+        
         var myDestination = MKPlacemark(coordinate: CLLocationCoordinate2DMake(parseUser!.Coordinate.latitude, parseUser!.Coordinate.longitude), addressDictionary: nil)
-        //var sourcePlacemark = MKPlacemark(coordinate: CLLocationCoordinate2DMake(User.currentUser()!.Coordinate.latitude, User.currentUser()!.Coordinate.longitude), addressDictionary: nil)
-        //var source:MKMapItem?
         let destMKMap = MKMapItem(placemark: myDestination)!
         
         var directionRequest:MKDirectionsRequest = MKDirectionsRequest()
@@ -147,6 +167,7 @@ class CompassViewController: UIViewController, UITableViewDelegate, MKMapViewDel
             let alertController = UIAlertController(title: "Get directions", message: msg, preferredStyle: .Alert)
             
             alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+            alert.dismissWithClickedButtonIndex(0, animated: true)
             self.presentViewController(alertController, animated: true, completion: nil)
 
         }

@@ -74,7 +74,7 @@ class PickerViewController: UIViewController, MKMapViewDelegate, UISearchBarDele
         
         var press: UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: "action:")
 
-        press.minimumPressDuration = 1.0
+        press.minimumPressDuration = 0.5
         mapView.addGestureRecognizer(press)
     }
     
@@ -161,7 +161,7 @@ class PickerViewController: UIViewController, MKMapViewDelegate, UISearchBarDele
     
     func sendRequest(toUser: User?){
         let geoPoint = PFGeoPoint(latitude: selectedLocation!.latitude, longitude: selectedLocation!.longitude)
-        let params = ["userId" : selectedFriend!.objectId!,  "location" : geoPoint, "message": message, "status": "pending"]
+        let params = ["userId" : selectedFriend!.objectId!,  "location" : geoPoint, "message": message, "status": "pending", "read": "false"]
         PFCloud.callFunctionInBackground("sendRequest", withParameters: params) { (request, error) -> Void in
             
             if let error = error {

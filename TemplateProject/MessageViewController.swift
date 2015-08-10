@@ -25,6 +25,7 @@ class MessageViewController: JSQMessagesViewController {
     var messages = [Message](){
         didSet {
             if self.isViewLoaded() {
+                scrollToBottomAnimated(false)
                 self.collectionView.reloadData()
             }
         }
@@ -38,7 +39,7 @@ class MessageViewController: JSQMessagesViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.topItem?.title = "Logout"
+        navigationController?.navigationBar.topItem?.title = "Back"
         self.inputToolbar.contentView.leftBarButtonItem = nil
         
         

@@ -24,6 +24,11 @@
 		6175E6911B6ABA6500DFC9C2 /* BusinessesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6175E6901B6ABA6500DFC9C2 /* BusinessesViewController.swift */; };
 		618D766F1B700D6E00FD040A /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618D766E1B700D6E00FD040A /* NotificationViewController.swift */; };
 		618D76771B7010FA00FD040A /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618D76761B7010FA00FD040A /* NotificationTableViewCell.swift */; };
+		619F4BBD1B77158F00C0AAD9 /* right arrows17.png in Resources */ = {isa = PBXBuildFile; fileRef = 619F4BBC1B77158F00C0AAD9 /* right arrows17.png */; };
+		619F4BC51B7717D800C0AAD9 /* CustomPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619F4BC41B7717D800C0AAD9 /* CustomPointAnnotation.swift */; };
+		619F4BC71B771F7900C0AAD9 /* Icon-60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 619F4BC61B771F7900C0AAD9 /* Icon-60@3x.png */; };
+		619F4BCF1B77D38800C0AAD9 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 619F4BCE1B77D38800C0AAD9 /* SWRevealViewController.m */; };
+		619F4BD11B77F49200C0AAD9 /* APP_GIF_!.gif in Resources */ = {isa = PBXBuildFile; fileRef = 619F4BD01B77F49200C0AAD9 /* APP_GIF_!.gif */; };
 		61AA91FE1B608D1B00ECE9FE /* PushNotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61AA91FD1B608D1B00ECE9FE /* PushNotificationController.swift */; };
 		61AD21B01B67CC0B0052B5C7 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61AD21AF1B67CC0B0052B5C7 /* PickerViewController.swift */; };
 		61CA19C81B5845F10000A5F5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CA19C71B5845F10000A5F5 /* Message.swift */; };
@@ -170,6 +175,12 @@
 		6175E6901B6ABA6500DFC9C2 /* BusinessesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessesViewController.swift; sourceTree = "<group>"; };
 		618D766E1B700D6E00FD040A /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		618D76761B7010FA00FD040A /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
+		619F4BBC1B77158F00C0AAD9 /* right arrows17.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right arrows17.png"; sourceTree = SOURCE_ROOT; };
+		619F4BC41B7717D800C0AAD9 /* CustomPointAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPointAnnotation.swift; sourceTree = "<group>"; };
+		619F4BC61B771F7900C0AAD9 /* Icon-60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-60@3x.png"; path = "../../../Icon-60@3x.png"; sourceTree = "<group>"; };
+		619F4BCD1B77D38800C0AAD9 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = SOURCE_ROOT; };
+		619F4BCE1B77D38800C0AAD9 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = SOURCE_ROOT; };
+		619F4BD01B77F49200C0AAD9 /* APP_GIF_!.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "APP_GIF_!.gif"; sourceTree = SOURCE_ROOT; };
 		61AA91FD1B608D1B00ECE9FE /* PushNotificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushNotificationController.swift; sourceTree = "<group>"; };
 		61AD21AF1B67CC0B0052B5C7 /* PickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
 		61CA19C51B5845360000A5F5 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
@@ -261,10 +272,20 @@
 			children = (
 				6175E6901B6ABA6500DFC9C2 /* BusinessesViewController.swift */,
 				6175E68C1B6AB13A00DFC9C2 /* YelpAPI.swift */,
+				619F4BCC1B77D37200C0AAD9 /* New Group */,
 				6175E68E1B6ABA4700DFC9C2 /* Business.swift */,
 				61AD21AF1B67CC0B0052B5C7 /* PickerViewController.swift */,
 			);
 			name = PickerViewController;
+			sourceTree = "<group>";
+		};
+		619F4BCC1B77D37200C0AAD9 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				619F4BCD1B77D38800C0AAD9 /* SWRevealViewController.h */,
+				619F4BCE1B77D38800C0AAD9 /* SWRevealViewController.m */,
+			);
+			name = "New Group";
 			sourceTree = "<group>";
 		};
 		61CA19CB1B58B18A0000A5F5 /* View Controllers */ = {
@@ -305,6 +326,8 @@
 		61D773341B5D612C00DD9AA2 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				619F4BC61B771F7900C0AAD9 /* Icon-60@3x.png */,
+				619F4BBC1B77158F00C0AAD9 /* right arrows17.png */,
 				61D505601B72B2FE00C87994 /* map-pointer2.png */,
 				61D505621B72B30100C87994 /* envelope48-2.png */,
 				61D505641B72B31D00C87994 /* network11-2.png */,
@@ -325,12 +348,14 @@
 				61CA19CC1B58B1C70000A5F5 /* Models */,
 				61CA19CB1B58B18A0000A5F5 /* View Controllers */,
 				39B140271B58247F00FEF6E0 /* FriendFinderTableViewCell.swift */,
+				619F4BC41B7717D800C0AAD9 /* CustomPointAnnotation.swift */,
 				618D76761B7010FA00FD040A /* NotificationTableViewCell.swift */,
 				624262B71B4460CB00005CE3 /* Helpers */,
 				61CA19D51B5994AD0000A5F5 /* GeoCompass */,
 				39B140381B58259F00FEF6E0 /* Main.storyboard */,
 				39B1402D1B58247F00FEF6E0 /* Images.xcassets */,
 				624262B31B4460CB00005CE3 /* LaunchScreen.xib */,
+				619F4BD01B77F49200C0AAD9 /* APP_GIF_!.gif */,
 				61D773341B5D612C00DD9AA2 /* Assets */,
 				624262BB1B4460CB00005CE3 /* Info.plist */,
 				624262BC1B4460CB00005CE3 /* TemplateProject-Bridging-Header.h */,
@@ -553,7 +578,9 @@
 			files = (
 				61D505611B72B2FE00C87994 /* map-pointer2.png in Resources */,
 				61D4F6631B6BE3A600BA3BE8 /* Rightarrow.png in Resources */,
+				619F4BBD1B77158F00C0AAD9 /* right arrows17.png in Resources */,
 				39B140331B58247F00FEF6E0 /* Images.xcassets in Resources */,
+				619F4BC71B771F7900C0AAD9 /* Icon-60@3x.png in Resources */,
 				61D505711B73D08600C87994 /* road sign18-2.png in Resources */,
 				61D5055F1B72B2F400C87994 /* speech-bubble14-3.png in Resources */,
 				61D505651B72B31D00C87994 /* network11-2.png in Resources */,
@@ -563,6 +590,7 @@
 				39B140431B58266600FEF6E0 /* arrow.png in Resources */,
 				39B140391B58259F00FEF6E0 /* Main.storyboard in Resources */,
 				61D505631B72B30100C87994 /* envelope48-2.png in Resources */,
+				619F4BD11B77F49200C0AAD9 /* APP_GIF_!.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -625,12 +653,14 @@
 				39B1403D1B58264700FEF6E0 /* FriendFinderViewController.swift in Sources */,
 				61AA91FE1B608D1B00ECE9FE /* PushNotificationController.swift in Sources */,
 				6175E68F1B6ABA4700DFC9C2 /* Business.swift in Sources */,
+				619F4BC51B7717D800C0AAD9 /* CustomPointAnnotation.swift in Sources */,
 				39B1402F1B58247F00FEF6E0 /* User.swift in Sources */,
 				624262C41B4460CB00005CE3 /* ParseLoginHelper.swift in Sources */,
 				39B140471B58268500FEF6E0 /* CompassViewController.swift in Sources */,
 				39B140451B58266600FEF6E0 /* ParseHelper.swift in Sources */,
 				6175E6911B6ABA6500DFC9C2 /* BusinessesViewController.swift in Sources */,
 				39B140301B58247F00FEF6E0 /* GeoPointCompass.m in Sources */,
+				619F4BCF1B77D38800C0AAD9 /* SWRevealViewController.m in Sources */,
 				618D766F1B700D6E00FD040A /* NotificationViewController.swift in Sources */,
 				617571671B67260800546093 /* NavigationController.swift in Sources */,
 				624262C31B4460CB00005CE3 /* ErrorHandling.swift in Sources */,

@@ -13,7 +13,6 @@ class NotificationViewController: UIViewController{
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
-        
         return refreshControl
         }()
     
@@ -25,26 +24,32 @@ class NotificationViewController: UIViewController{
         q1!.findObjectsInBackgroundWithBlock { (requests, error) -> Void in
             
             if let req = requests as? [MeetingRequest] {
-                println(req)
+                
                 for entry in req {
                     self.allRequests.append(entry)
                     self.requestFetched = entry
                     self.requestsArray.append("\(self.requestFetched!.toUser.username!) has replied to your request.")
                     self.users.append(self.requestFetched!.toUser)
+                    var r = entry["read"] as! String
+                    self.read.append(r)
                 }
-                self.tableView.reloadData()
+                self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Left)
+
             }
             
         }
 
     }
     
+    var read: [String] = []
+    
     func handleRefresh(refreshControl: UIRefreshControl) {
         allRequests = []
         requestsArray = []
         users = []
         getNotifications()
-        self.tableView.reloadData()
+      // self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Left)
+
         refreshControl.endRefreshing()
     }
 
@@ -93,8 +98,10 @@ class NotificationViewController: UIViewController{
                     self.allRequests.append(entry)
                     self.requestsArray.append("\(self.requestFetched!.fromUser.username!) wants to meet you!")
                     self.users.append(self.requestFetched!.fromUser)
+                   
+                    self.read.append(entry["read"] as! String)
                }
-                self.tableView.reloadData()
+                self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Left)
             }
             
         }
@@ -107,23 +114,41 @@ class NotificationViewController: UIViewController{
             let RequestViewController = segue.destinationViewController as! ReqViewController
            RequestViewController.friend = friend
             RequestViewController.location = location
+            
+            
+            RequestViewController.txt = msg
         }
     }
     var friend: User?
- 
+    var msg: String = ""
 }
+
 extension NotificationViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("notifCell") as! NotificationTableViewCell
+        selectedReq = allRequests[indexPath.row]
+        let cell: NotificationTableViewCell
         
+        if selectedReq?.fromUser.objectId == User.currentUser()?.objectId{
+             cell = tableView.dequeueReusableCellWithIdentifier("notifCell") as! NotificationTableViewCell
+            //cell.backgroundColor = UIColor.grayColor()
+        }
+        else{
+            cell = tableView.dequeueReusableCellWithIdentifier("requestCell") as! NotificationTableViewCell
+
+        }
+        
+        
+//        cell.msg.numberOfLines = 0
+//        cell.msg.lineBreakMode = NSLineBreakMode.ByWordWrapping
         selectedReq = allRequests[indexPath.row]
         cell.request.text = requestsArray[indexPath.row]
-        location = CLLocationCoordinate2DMake(allRequests[indexPath.row].location.latitude, allRequests[indexPath.row].location.longitude)
+        
         var user = users[indexPath.row]
-        friend = user
         
         if (allRequests[indexPath.row].message != "" ){
+            
             cell.msg.text = "\(user!.username!) says \(allRequests[indexPath.row].message)"
+            
         }
         
         let userID = user!.fbID
@@ -134,35 +159,61 @@ extension NotificationViewController: UITableViewDataSource, UITableViewDelegate
         
         let url = NSURL(string: "http://graph.facebook.com/\(userID)/picture")
         cell.Picture.sd_setImageWithURL(url, completed: nil)
-
+        cell.Picture.layer.cornerRadius = cell.Picture.frame.size.width / 2;
+        cell.Picture.clipsToBounds = true;
         return cell
     }
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
-        let accept = UITableViewRowAction(style: .Normal, title: "Accept") { action, index in
-            println("accept button tapped")
-            self.selectedReq!.setObject("Accepted", forKey: "request")
-            self.selectedReq!.save()
+      
+        if tableView.cellForRowAtIndexPath(indexPath)?.backgroundColor != UIColor.grayColor() {
+            let accept = UITableViewRowAction(style: .Normal, title: "Accept") { action, index in
+                self.selectedReq!.setObject("Accepted", forKey: "request")
+                self.selectedReq!.save()
+                self.tableView.cellForRowAtIndexPath(indexPath)?.backgroundColor = UIColor.blueColor()
+            }
+            accept.backgroundColor = UIColor.greenColor()
             
+            let decline = UITableViewRowAction(style: .Normal, title: "Decline") { action, index in
+                self.selectedReq!.setObject("Denied", forKey: "request")
+                self.selectedReq!.save()
+                var obj = PFObject(withoutDataWithClassName: "MeetingRequest", objectId: self.allRequests[indexPath.row].objectId)
+                obj.deleteEventually()
+                self.users.removeAtIndex(indexPath.row)
+                self.allRequests.removeAtIndex(indexPath.row)
+                self.requestsArray.removeAtIndex(indexPath.row)
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            }
+            decline.backgroundColor = UIColor.redColor()
+            return [accept, decline]
         }
-        accept.backgroundColor = UIColor.greenColor()
-        
-        let decline = UITableViewRowAction(style: .Normal, title: "Decline") { action, index in
-            println("decline button tapped")
-            
-            self.selectedReq!.setObject("Denied", forKey: "request")
-            self.selectedReq!.save()
+        else{
+            return []
         }
-        decline.backgroundColor = UIColor.redColor()
+       
+    }
+    
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
         
-        return [accept, decline]
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        var user = users[indexPath.row]
+        friend = user
+        
+        read[indexPath.row] = "true"
+        self.tableView.cellForRowAtIndexPath(indexPath)?.backgroundColor = UIColor.whiteColor()
+
+        msg = allRequests[indexPath.row].message
+
         self.selectedRequest = requestsArray[indexPath.row]
+        self.location = CLLocationCoordinate2DMake(allRequests[indexPath.row].location.latitude, allRequests[indexPath.row].location.longitude)
+        self.performSegueWithIdentifier("openReq", sender: self)
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        println(requestsArray.count)
         return requestsArray.count ?? 0
     }
     
@@ -171,7 +222,5 @@ extension NotificationViewController: UITableViewDataSource, UITableViewDelegate
         return true
     }
     
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        // you need to implement this method too or you can't swipe to display the actions
-    }
+    
 }

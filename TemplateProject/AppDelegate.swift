@@ -88,7 +88,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             
             application.registerUserNotificationSettings(settings)
             application.registerForRemoteNotifications()
-      
+        
+//        let push = PFPush()
+//        push.setChannel("News")
+//        push.setMessage("You have received a new message!")
+//        push.sendPushInBackground()
+        
+        
+        let pushQuery = MeetingRequest.query()
+        pushQuery!.whereKey("toUser", equalTo: User.currentUser()!)
+        pushQuery?.whereKey("read", equalTo: "false")
+        
+        // Send push notification to query
+        let push = PFPush()
+        push.setQuery(pushQuery) // Set our Installation query
+        push.setMessage("You have a new request!")
+        push.sendPushInBackground()
+        
+        
       PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)  
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
@@ -96,11 +113,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         println("didRegisterForRemoteNotificationsWithDeviceToken")
         
         let currentInstallation = PFInstallation.currentInstallation()
-        
         currentInstallation.setDeviceTokenFromData(deviceToken)
-        currentInstallation.saveInBackgroundWithBlock { (succeeded, error) -> Void in
-            //code
-        }
+        currentInstallation.addUniqueObject("News", forKey: "channels")
+        currentInstallation["user"] = User.currentUser()
+        
+        currentInstallation.saveInBackground()
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
@@ -117,20 +134,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         self.locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
-        
 
-        
-//        ParseHelper.allUsers { (results, error) -> Void in
-//            if let error = error {
-//                ErrorHandling.defaultErrorHandler(error)
-//                return
-//            }
-//            let users = results as! [User]
-//            for user in users {
-//                let currentUser = User.currentUser()
-//                currentUser!.addFriend(user)
-//            }
-//        }
     }
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {

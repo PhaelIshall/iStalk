@@ -28,7 +28,7 @@ class FriendFinderViewController: UIViewController, CLLocationManagerDelegate  {
         
          checkUsers()
         
-        self.tableView.reloadData()
+        self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Left)
         refreshControl.endRefreshing()
     }
     
@@ -68,7 +68,7 @@ class FriendFinderViewController: UIViewController, CLLocationManagerDelegate  {
     
     var nearbySelected: Bool = false {
         didSet {
-            self.tableView.reloadData()
+            self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Left)
         }
     }
     
@@ -86,8 +86,8 @@ class FriendFinderViewController: UIViewController, CLLocationManagerDelegate  {
 
         case 1:
             nearbySelected = true
-          
-
+        case 2:
+            self.performSegueWithIdentifier("notif", sender: self)
         default:
             break;
         }
@@ -112,7 +112,7 @@ class FriendFinderViewController: UIViewController, CLLocationManagerDelegate  {
             
             if let friendships = friends as? [[String: String]]{
                 self.userArray = friendships
-                self.tableView.reloadData()
+                //self.tableView.reloadData()
                 
                 for entry in self.userArray{
                     self.friendIDs.append(entry["id"]!)
@@ -148,16 +148,6 @@ class FriendFinderViewController: UIViewController, CLLocationManagerDelegate  {
         return false
     }
 
-    
-    func updateList(results: [AnyObject]?, error: NSError?) {
-        
-        var users = results as? [User] ?? []
-        self.tableView.reloadData()
-        
-        if let error = error {
-            ErrorHandling.defaultErrorHandler(error)
-        }
-    }
     var nearSearchArray : [User] = []
     
     //Search filtred array for nearby friends
@@ -202,7 +192,6 @@ class FriendFinderViewController: UIViewController, CLLocationManagerDelegate  {
 
         }
     
-        self.tableView.reloadData()
     }
     
 }
@@ -298,6 +287,7 @@ extension FriendFinderViewController: UITableViewDataSource, UITableViewDelegate
     
     
     
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "ShowCompass") {
             let compassViewController = segue.destinationViewController as! CompassViewController
@@ -310,7 +300,10 @@ extension FriendFinderViewController: UITableViewDataSource, UITableViewDelegate
             }
         }
         if (segue.identifier == "notif") {
-            let notifViewCont = segue.destinationViewController as! NotificationViewController
+            
+                let notifViewCont = segue.destinationViewController as! NotificationViewController
+
+            
         }
     }
 }

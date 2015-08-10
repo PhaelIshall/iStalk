@@ -27,8 +27,8 @@ Parse.Cloud.define("sendRequest", function(request, response) {
                    var location = request.params.location;
                    var message = request.params.message; 
                    var status = request.params.status;
+                   var read = request.params.read;
                    
-			
                    
                    var User = Parse.Object.extend('_User'),
                    user = new User({ objectId: userId });
@@ -41,6 +41,7 @@ Parse.Cloud.define("sendRequest", function(request, response) {
                     requests.set("location", location);
                    requests.set("message", message)
                    requests.set("toUser", user);
+                   requests.set("read", read)
                    requests.set("fromUser", currentUser);
                 
                    requests.save();
