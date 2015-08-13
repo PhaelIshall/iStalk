@@ -1,11 +1,3 @@
-//
-//  FriendFinderViewController.swift
-//  TemplateProject
-//
-//  Created by ALAA AL MUTAWA on 7/8/15.
-//  Copyright (c) 2015 Make School. All rights reserved.
-//
-
 import UIKit
 import CoreLocation
 import Parse
@@ -13,7 +5,8 @@ import ConvenienceKit
 import Bond
 import SDWebImage
 
-class FriendFinderViewController: UIViewController, CLLocationManagerDelegate  {
+class FriendPickerViewController: UIViewController, CLLocationManagerDelegate  {
+    var selectedLocation: CLLocationCoordinate2D?
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
@@ -26,12 +19,11 @@ class FriendFinderViewController: UIViewController, CLLocationManagerDelegate  {
     
     func handleRefresh(refreshControl: UIRefreshControl) {
         
-         checkUsers()
+        checkUsers()
         
         self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Left)
         refreshControl.endRefreshing()
     }
-    
     
     var query: PFQuery? {
         didSet {
@@ -60,10 +52,10 @@ class FriendFinderViewController: UIViewController, CLLocationManagerDelegate  {
     var userArray: [[String: String]] = []
     
     var userSearchArray: [[String: String]] = []
-   
+    
     var selectedFriend: [String: String]?
     var selectedFriendUser: User?
-
+    
     var nearbyFriends: [User] = []
     
     var nearbySelected: Bool = false {
@@ -76,7 +68,7 @@ class FriendFinderViewController: UIViewController, CLLocationManagerDelegate  {
     @IBOutlet weak var tableView: UITableView!
     
     var friendIDs: [String] = []
-
+    
     @IBAction func indexChanged(sender: UISegmentedControl) {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
@@ -84,9 +76,6 @@ class FriendFinderViewController: UIViewController, CLLocationManagerDelegate  {
             friendIDs = []
         case 1:
             nearbySelected = true
-        case 2:
-            self.performSegueWithIdentifier("notif", sender: self)
-            segmentedControl.selectedSegmentIndex = 0
         default:
             break;
         }
@@ -127,7 +116,7 @@ class FriendFinderViewController: UIViewController, CLLocationManagerDelegate  {
                         for entry in result {
                             if (self.checkIfFriend(entry.fbID)){
                                 self.nearbyFriends.append(entry)
-                               
+                                
                             }
                         }
                         self.tableView.reloadData()
@@ -135,7 +124,7 @@ class FriendFinderViewController: UIViewController, CLLocationManagerDelegate  {
                 })
             }
         })
-
+        
     }
     
     func checkIfFriend(id: String) -> Bool{
@@ -146,7 +135,7 @@ class FriendFinderViewController: UIViewController, CLLocationManagerDelegate  {
         }
         return false
     }
-
+    
     var nearSearchArray : [User] = []
     
     //Search filtred array for nearby friends
@@ -173,7 +162,7 @@ class FriendFinderViewController: UIViewController, CLLocationManagerDelegate  {
                 return false
             })
         case 1:
-             nearSearchArray = nearbyFriends.filter({ (user) -> Bool in
+            nearSearchArray = nearbyFriends.filter({ (user) -> Bool in
                 var name = user.username
                 if (name!.rangeOfString(searchText) != nil){
                     return true
@@ -188,9 +177,9 @@ class FriendFinderViewController: UIViewController, CLLocationManagerDelegate  {
                 }
                 return false
             })
-
+            
         }
-    
+        
     }
     
 }
@@ -198,15 +187,15 @@ class FriendFinderViewController: UIViewController, CLLocationManagerDelegate  {
 // MARK: TableView Data Source
 
 
-extension FriendFinderViewController: UITableViewDataSource, UITableViewDelegate {
+extension FriendPickerViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if nearbySelected == true{
-             if (state == .SearchMode){
+            if (state == .SearchMode){
                 return self.nearSearchArray.count ?? 0
             }
-             else{
+            else{
                 return self.nearbyFriends.count ?? 0
             }
         }
@@ -223,101 +212,99 @@ extension FriendFinderViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("UserCell") as! FriendFinderTableViewCell
-            if (nearbySelected == false){
-                var users: [[String: String]]
-                if (state == .SearchMode){
-                    users = self.userSearchArray
-                }
-                else{
-                     users = self.userArray
-
-                }
-                    let user = users[indexPath.row]
-                    let userID = user["id"]
-                    let query = PFQuery(className: "Users")
-                    query.whereKey("FBID", equalTo: user["id"]!)
-                
-                    let url = NSURL(string: "http://graph.facebook.com/\(userID!)/picture")
-                    cell.Picture.sd_setImageWithURL(url, completed: nil)
-                    cell.Picture.layer.cornerRadius = cell.Picture.frame.size.width / 2;
-                    cell.Picture.clipsToBounds = true;
-                                     cell.usernameLabel?.text = users[indexPath.row]["name"]
+        if (nearbySelected == false){
+            var users: [[String: String]]
+            if (state == .SearchMode){
+                users = self.userSearchArray
             }
             else{
-                var users: [User] = []
-                if (state == .SearchMode)
-                {
-                      users = self.nearSearchArray
-
-                }
-                else {
-                    users = self.nearbyFriends
-
-                }
-               
-                let user = users[indexPath.row]
-                let userID = user.fbID
-                let query = PFQuery(className: "Users")
+                users = self.userArray
                 
-                query.whereKey("FBID", equalTo: userID)
-                
-                
-                let url = NSURL(string: "http://graph.facebook.com/\(userID)/picture")
-                cell.Picture.sd_setImageWithURL(url, completed: nil)
-                cell.Picture.layer.cornerRadius = cell.Picture.frame.size.width / 2;
-                cell.Picture.clipsToBounds = true;
-                cell.usernameLabel?.text = users[indexPath.row].username
-
             }
+            let user = users[indexPath.row]
+            let userID = user["id"]
+            let query = PFQuery(className: "Users")
+            query.whereKey("FBID", equalTo: user["id"]!)
+            
+            let url = NSURL(string: "http://graph.facebook.com/\(userID!)/picture")
+            cell.Picture.sd_setImageWithURL(url, completed: nil)
+            cell.Picture.layer.cornerRadius = cell.Picture.frame.size.width / 2;
+            cell.Picture.clipsToBounds = true;
+            cell.usernameLabel?.text = users[indexPath.row]["name"]
+        }
+        else{
+            var users: [User] = []
+            if (state == .SearchMode)
+            {
+                users = self.nearSearchArray
+                
+            }
+            else {
+                users = self.nearbyFriends
+                
+            }
+            
+            let user = users[indexPath.row]
+            let userID = user.fbID
+            let query = PFQuery(className: "Users")
+            
+            query.whereKey("FBID", equalTo: userID)
+            
+            
+            let url = NSURL(string: "http://graph.facebook.com/\(userID)/picture")
+            cell.Picture.sd_setImageWithURL(url, completed: nil)
+            cell.Picture.layer.cornerRadius = cell.Picture.frame.size.width / 2;
+            cell.Picture.clipsToBounds = true;
+            cell.usernameLabel?.text = users[indexPath.row].username
+            
+        }
         
-            return cell
+        return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if (!nearbySelected){
-            self.selectedFriend = userArray[indexPath.row]
-        }
-        else{
-            self.selectedFriendUser = nearbyFriends[indexPath.row]
-        }
-        self.performSegueWithIdentifier("ShowCompass", sender: self)
-        
+//        if (!nearbySelected){
+//            self.selectedFriend = userArray[indexPath.row]
+//        }
+//        else{
+//            self.selectedFriendUser = nearbyFriends[indexPath.row]
+//        }
+        self.performSegueWithIdentifier("showFirst", sender: self)
     }
     
     
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "ShowCompass") {
-            let compassViewController = segue.destinationViewController as! CompassViewController
+        if (segue.identifier == "showFirst") {
+            let s = segue.destinationViewController as! FirstViewController
+            s.touchMapCoordinate = selectedLocation
+        }
+        if (segue.identifier == "sendRequest") {
+            let friendReq = segue.destinationViewController as! SendRequestViewController
+            friendReq.selectedLocation = selectedLocation
             if (!nearbySelected){
-                compassViewController.friend = self.selectedFriend
-                compassViewController.nearbySelected = false
+                friendReq.friend = self.selectedFriend
+                friendReq.nearbySelected = false
             }
             else{
-                compassViewController.nearbySelected = true
-                compassViewController.parseUser = self.selectedFriendUser
-                
+                friendReq.nearbySelected = true
+                friendReq.parseUser = self.selectedFriendUser
+        
             }
-        }
-        if (segue.identifier == "notif") {
-            
-                let notifViewCont = segue.destinationViewController as! NotificationViewController
-
-            
         }
     }
 }
 
 // MARK: Searchbar Delegate
 
-extension FriendFinderViewController: UISearchBarDelegate {
+extension FriendPickerViewController: UISearchBarDelegate {
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
         searchBar.setShowsCancelButton(true, animated: true)
         state = .SearchMode
         tableView.reloadData()
-
+        
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
@@ -328,7 +315,6 @@ extension FriendFinderViewController: UISearchBarDelegate {
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-       self.searchTextUpdated(searchText)
-        tableView.reloadData()
+        self.searchTextUpdated(searchText)
     }
 }

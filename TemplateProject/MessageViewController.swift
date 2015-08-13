@@ -46,8 +46,11 @@ class MessageViewController: JSQMessagesViewController {
          self.automaticallyScrollsToMostRecentMessage = true
         senderDisplayName = User.currentUser()!.username
         senderId = User.currentUser()!.objectId
-       
-        
+    }
+    func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
+        var viewRegion = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 1900, 1900);
+        var adjustedRegion = mapView.regionThatFits(viewRegion)
+        mapView.setRegion(adjustedRegion, animated: true);
     }
 
     override func didReceiveMemoryWarning() {

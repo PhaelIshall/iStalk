@@ -22,7 +22,7 @@ class ReqViewController: UIViewController, UITableViewDelegate, MKMapViewDelegat
     
     @IBOutlet var arrowImageView: UIImageView! {
         didSet {
-            arrowImageView.image = UIImage(named: "Icon-60@3x.png")
+            arrowImageView.image = UIImage(named: "1.png")
         }
     }
     
@@ -38,8 +38,6 @@ class ReqViewController: UIViewController, UITableViewDelegate, MKMapViewDelegat
     @IBAction func declinePressed(sender: AnyObject){
         self.meetingRequest!.setObject("Denied", forKey: "request")
         self.meetingRequest!.save()
-//        var obj = PFObject(withoutDataWithClassName: "MeetingRequest", objectId: meetingRequest?.objectId)
-//        obj.deleteEventually()
         accept?.hidden
         decline?.hidden
     }
@@ -48,8 +46,10 @@ class ReqViewController: UIViewController, UITableViewDelegate, MKMapViewDelegat
     
     @IBAction func showMenu(sender: AnyObject) {
         if (meetingRequest?.status != "pending"){
-            accept?.hidden
-            decline?.hidden
+//            accept?.hidden
+//            decline?.hidden
+            accept?.removeFromSuperview()
+            decline?.removeFromSuperview()
         }
       slide(menu)
 
@@ -59,8 +59,9 @@ class ReqViewController: UIViewController, UITableViewDelegate, MKMapViewDelegat
     
     func slide(view: UIView){
         if (!down){
-            view.frame = CGRectMake( 0, 380, view.frame.size.width , view.frame.size.height );
+            view.frame = CGRectMake( 0, toolBar.frame.minY - view.frame.height, view.frame.size.width , view.frame.size.height );
             down = true
+            
             println(meetingRequest)
             println(meetingRequest?.status)
             if (meetingRequest?.status == "Accepted"){
@@ -74,6 +75,8 @@ class ReqViewController: UIViewController, UITableViewDelegate, MKMapViewDelegat
                 }
             }
             else if (meetingRequest?.status == "Denied"){
+
+                println(meetingRequest?.message)
                 if meetingRequest?.toUser.objectId == User.currentUser()?.objectId{
                     var alert: UIAlertView = UIAlertView(title: "Details", message: "You have declined the request", delegate: nil, cancelButtonTitle: "OK");
                     alert.show()
@@ -84,12 +87,15 @@ class ReqViewController: UIViewController, UITableViewDelegate, MKMapViewDelegat
                 }
 
             }
+           
         }
         else{
-            view.frame = CGRectMake( 500, 380, view.frame.size.width , view.frame.size.height  );
+            view.frame = CGRectMake( toolBar.frame.maxY, toolBar.frame.maxX, view.frame.size.width , view.frame.size.height  );
             down = false
         }
     }
+    
+    @IBOutlet weak var toolBar: UIToolbar!
     
     @IBOutlet weak var menu: UIView!
     
@@ -101,12 +107,18 @@ class ReqViewController: UIViewController, UITableViewDelegate, MKMapViewDelegat
     @IBAction func direct(sender: AnyObject) {
         getDirection()
     }
-    
+    var user = PersonAnnotation()                      //PERSON ANNOTATION
     var location: CLLocationCoordinate2D?
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        friendName.text = "\(friend!.username!) said: "
+        if meetingRequest?.fromUser != User.currentUser(){
+            friendName.text = "\(friend!.username!) said: "
+
+        }
+        else{
+            friendName.text = "You said: "
+        }
         msg.text = txt
         mapView.alpha = 1
         arrowImageView.removeFromSuperview()
@@ -123,31 +135,71 @@ class ReqViewController: UIViewController, UITableViewDelegate, MKMapViewDelegat
         
         var selectedLocation = MKPointAnnotation()
 
-        selectedLocation.title = "Suggested location"
-        selectedLocation.subtitle = "Your friend selected this location"
+        selectedLocation.title = "Your friend selected this location"
       
-        selectedLocation.coordinate = location!
+        selectedLocation.coordinate = self.location!
+        let geoCoder = CLGeocoder()
+        let location = CLLocation(latitude: selectedLocation.coordinate.latitude, longitude: selectedLocation.coordinate.longitude)
         
+        geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
+            let placeArray = placemarks as? [CLPlacemark]
+            var placeMark: CLPlacemark!
+            placeMark = placeArray?[0]
+            var sub: String = ""
+            if let locationName = placeMark.addressDictionary["Name"] as? String {
+                sub += locationName
+            }
+            if let city = placeMark.addressDictionary["City"] as? String {
+                sub += ", " + city
+            }
+            selectedLocation.subtitle = sub
+        })
+
         self.mapView.addAnnotation(selectedLocation)
         self.mapView.addAnnotation(point)
         
-        var viewRegion = MKCoordinateRegionMakeWithDistance(selectedLocation.coordinate, 1900, 1900);
-        var adjustedRegion = mapView.regionThatFits(viewRegion)
-        mapView.setRegion(adjustedRegion, animated: true);
+        user.coordinate = CLLocationCoordinate2DMake(User.currentUser()!.Coordinate!.latitude, User.currentUser()!.Coordinate!.longitude)
+        user.imageName = "man13-2.png"                                                          //PERSON ANNOTATION
+        self.mapView.addAnnotation(user)
+        mapView.showAnnotations(mapView.annotations, animated: true)
+        mapView.selectAnnotation(point, animated: true)
+
         mapView.delegate = self;
         
         var place = PFGeoPoint()
-        place.latitude = location!.latitude
-        place.longitude = location!.longitude
+        place.latitude = self.location!.latitude
+        place.longitude = self.location!.longitude
         
-        var dist = friend!.Coordinate.distanceInKilometersTo(place);
-        self.title = String(format:"%.1f", dist) + "km from the destination"
+        var dist = User.currentUser()!.Coordinate.distanceInKilometersTo(place);
+        self.title = String(format:"%.1f", dist) + "km from destination"
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    
+    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+       
+        if let annotation = annotation as? PersonAnnotation {
+            annotation.imageName = "man13-2.png"
+            var annotationView : MKAnnotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "loc")
+            annotationView.image = UIImage(named: "man13-2.png")
+            //annotationView.canShowCallout = true
+            return annotationView
+        }
+        if let annotation = annotation as? MKUserLocation {
+            return nil
+        }
+        
+        var annotationView : MKAnnotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: "loc")
+      
+        annotationView.canShowCallout = true
+        
+        return annotationView
+    }
+    
+
     func getDirection(){
         
         var alert: UIAlertView = UIAlertView(title: "Getting directions", message: "Please wait, this will take a few seconds...", delegate: nil, cancelButtonTitle: "Cancel");

@@ -36,7 +36,14 @@ class MeetingRequest:  PFObject, PFSubclassing {
                     self["request"] = newValue
                 }
             }
-    
+    var read: String {
+        get{
+            return self["read"] as! String
+        }
+        set{
+            self["read"] = newValue
+        }
+    }
 
     
 

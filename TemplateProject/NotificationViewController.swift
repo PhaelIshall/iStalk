@@ -21,28 +21,21 @@ class NotificationViewController: UIViewController{
         q1?.whereKey("request", notEqualTo: "pending")
         q1?.whereKey("fromUser", equalTo: User.currentUser()!)
         q1?.includeKey("toUser")
+        q1?.includeKey("fromUser")
         q1!.findObjectsInBackgroundWithBlock { (requests, error) -> Void in
             if let req = requests as? [MeetingRequest] {
                 
                 for entry in req {
                     self.allRequests.append(entry)
                     self.requestFetched = entry
-                    self.requestsArray.append("\(self.requestFetched!.toUser.username!) has replied to your request.")
-                    self.users.append(self.requestFetched!.toUser)
-                    var r = entry["read"] as! String
-                    self.read.append(r)
                 }
-                self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Left)
+               self.tableView.reloadData()
             }
         }
     }
     
-    var read: [String] = []
-    
     func handleRefresh(refreshControl: UIRefreshControl) {
         allRequests = []
-        requestsArray = []
-        users = []
         getNotifications()
        self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Left)
 
@@ -50,12 +43,10 @@ class NotificationViewController: UIViewController{
     }
 
     var selectedReq: MeetingRequest?
-    var selectedRequest : String?
+
     var requestFetched: MeetingRequest?
-    var requestsArray: [String] = []
+
     var allRequests: [MeetingRequest] = []
-    var users : [User?] = []
-    
     override func viewDidLoad() {
         super.viewDidLoad()
             getNotifications()
@@ -84,18 +75,16 @@ class NotificationViewController: UIViewController{
         var query = MeetingRequest.query()!
         query.whereKey("toUser", equalTo: User.currentUser()!)
         query.includeKey("fromUser")
+        query.includeKey("toUser")
         query.findObjectsInBackgroundWithBlock { (requests, error) -> Void in
             
             if let req = requests as? [MeetingRequest] {
                 for entry in req {
                     self.requestFetched = entry
                     self.allRequests.append(entry)
-                    self.requestsArray.append("\(self.requestFetched!.fromUser.username!) wants to meet you!")
-                    self.users.append(self.requestFetched!.fromUser)
-                   
-                    self.read.append(entry["read"] as! String)
+                    println(entry)
                }
-                self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Left)
+                self.tableView.reloadData()
             }
             
         }
@@ -106,10 +95,9 @@ class NotificationViewController: UIViewController{
         
         if (segue.identifier == "openReq") {
             let RequestViewController = segue.destinationViewController as! ReqViewController
-           RequestViewController.friend = friend
+            RequestViewController.friend = friend
             RequestViewController.location = location
             RequestViewController.txt = msg
-            println(msg)
             RequestViewController.meetingRequest = selectedReq
         }
     }
@@ -119,41 +107,48 @@ class NotificationViewController: UIViewController{
 
 extension NotificationViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        selectedReq = allRequests[indexPath.row]
-        let cell: NotificationTableViewCell
         
-        if selectedReq?.fromUser.objectId == User.currentUser()?.objectId{
+        
+        let selectedReq = allRequests[indexPath.row]
+        let cell: NotificationTableViewCell
+       
+        
+        if selectedReq.fromUser.objectId == User.currentUser()?.objectId{
              cell = tableView.dequeueReusableCellWithIdentifier("notifCell") as! NotificationTableViewCell
-            //cell.backgroundColor = UIColor.grayColor()
+            cell.request.text = "\(allRequests[indexPath.row].toUser.username!) has replied to your request!"
+            if (allRequests[indexPath.row].message != "" ){
+                cell.msg.text = "You said \(allRequests[indexPath.row].message)"
+            }
+            let userID = allRequests[indexPath.row].toUser.fbID
+            let query = PFQuery(className: "Users")
+            
+            query.whereKey("FBID", equalTo: userID)
+            
+            
+            let url = NSURL(string: "http://graph.facebook.com/\(userID)/picture")
+            cell.Picture.sd_setImageWithURL(url, completed: nil)
+            cell.Picture.layer.cornerRadius = cell.Picture.frame.size.width / 2;
+            cell.Picture.clipsToBounds = true;
+            
         }
         else{
             cell = tableView.dequeueReusableCellWithIdentifier("requestCell") as! NotificationTableViewCell
-
-        }
-
-        selectedReq = allRequests[indexPath.row]
-        cell.request.text = requestsArray[indexPath.row]
-        
-        var user = users[indexPath.row]
-        
-        if (allRequests[indexPath.row].message != "" ){
+            cell.request.text = "\(allRequests[indexPath.row].fromUser.username!) wants to meet you!"
+            if (allRequests[indexPath.row].message != "" ){
+                cell.msg.text = "\(allRequests[indexPath.row].fromUser.username!) says \(allRequests[indexPath.row].message)"
+            }
+            let userID = allRequests[indexPath.row].fromUser.fbID
+            let query = PFQuery(className: "Users")
             
-            cell.msg.text = "\(user!.username!) says \(allRequests[indexPath.row].message)"
+            query.whereKey("FBID", equalTo: userID)
+            
+            
+            let url = NSURL(string: "http://graph.facebook.com/\(userID)/picture")
+            cell.Picture.sd_setImageWithURL(url, completed: nil)
+            cell.Picture.layer.cornerRadius = cell.Picture.frame.size.width / 2;
+            cell.Picture.clipsToBounds = true;
             
         }
-        
-        let userID = user!.fbID
-        let query = PFQuery(className: "Users")
-        
-        query.whereKey("FBID", equalTo: userID)
-        
-        
-        let url = NSURL(string: "http://graph.facebook.com/\(userID)/picture")
-        cell.Picture.sd_setImageWithURL(url, completed: nil)
-        cell.Picture.layer.cornerRadius = cell.Picture.frame.size.width / 2;
-        cell.Picture.clipsToBounds = true;
-        
-        println(cell.reuseIdentifier!)
         return cell
     }
     
@@ -172,9 +167,7 @@ extension NotificationViewController: UITableViewDataSource, UITableViewDelegate
                 self.selectedReq!.save()
                 var obj = PFObject(withoutDataWithClassName: "MeetingRequest", objectId: self.allRequests[indexPath.row].objectId)
                 obj.deleteEventually()
-                self.users.removeAtIndex(indexPath.row)
                 self.allRequests.removeAtIndex(indexPath.row)
-                self.requestsArray.removeAtIndex(indexPath.row)
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
             }
             decline.backgroundColor = UIColor.redColor()
@@ -190,18 +183,24 @@ extension NotificationViewController: UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var user = users[indexPath.row]
-        friend = user
-        read[indexPath.row] = "true"
+        self.allRequests[indexPath.row].setObject("true", forKey: "read")
+        self.allRequests[indexPath.row].save()
+        allRequests[indexPath.row].read = "true"
+        if(allRequests[indexPath.row].fromUser.objectId != User.currentUser()?.objectId){
+            friend = allRequests[indexPath.row].fromUser
+        }
+        else{
+            friend = allRequests[indexPath.row].toUser
+        }
         self.tableView.cellForRowAtIndexPath(indexPath)?.backgroundColor = UIColor.whiteColor()
         msg = allRequests[indexPath.row].message
-        self.selectedRequest = requestsArray[indexPath.row]
+        self.selectedReq = allRequests[indexPath.row]
         self.location = CLLocationCoordinate2DMake(allRequests[indexPath.row].location.latitude, allRequests[indexPath.row].location.longitude)
         self.performSegueWithIdentifier("openReq", sender: self)
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        println(requestsArray.count)
-        return requestsArray.count ?? 0
+        println(allRequests.count)
+        return allRequests.count ?? 0
     }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

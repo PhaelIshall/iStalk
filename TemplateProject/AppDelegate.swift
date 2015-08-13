@@ -17,6 +17,12 @@ import GoogleMaps
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate  {
     
+    struct Constants {
+        static let DidReceiveNotificationForChannel = "Did Receive Notification For Channel"
+        
+        static let DidLoginNotification = "Did Login Notification"
+        static let DidLogoutNotification = "Did Logout Notification"
+    }
     
     var parseLoginHelper: ParseLoginHelper!
     var window: UIWindow?
@@ -63,23 +69,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         } else {
             // 4
             // Otherwise set the LoginViewController to be the first
-            let loginViewController = PFLogInViewController()
-            loginViewController.fields = .Facebook
-            loginViewController.facebookPermissions = ["user_friends"]
-            loginViewController.logInView?.backgroundColor = UIColor(patternImage: UIImage(named: "Icon-60@3x.png")!)
-          
-            loginViewController.delegate = parseLoginHelper
-            loginViewController.signUpController?.delegate = parseLoginHelper
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let loginViewController = storyboard.instantiateViewControllerWithIdentifier("InitialVC") as! UIViewController
             
             startViewController = loginViewController
-            
+
             }
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window?.rootViewController = startViewController;
             self.window?.makeKeyAndVisible()
-        if User.currentUser() != nil {
-            initLocationManager()
-        }
+        initLocationManager()
+//        if User.currentUser() != nil {
+//            initLocationManager()
+//        }
         
      
         

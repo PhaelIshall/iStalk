@@ -74,7 +74,7 @@ class PickerViewController: UIViewController, MKMapViewDelegate, UISearchBarDele
         
         var press: UILongPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: "action:")
 
-        press.minimumPressDuration = 0.5
+        press.minimumPressDuration = 0.25
         mapView.addGestureRecognizer(press)
     }
     
@@ -111,7 +111,7 @@ class PickerViewController: UIViewController, MKMapViewDelegate, UISearchBarDele
     }
     
     func searchForPlace(searchtext: String){
-        Business.searchWithTerm(searchtext, sort: .Distance, categories: [], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
+        Business.searchWithTerm(nil,term: searchtext, sort: .Distance, categories: [], deals: true) { (businesses: [Business]!, error: NSError!) -> Void in
             self.businesses = businesses
             
             for business in businesses {
@@ -155,7 +155,6 @@ class PickerViewController: UIViewController, MKMapViewDelegate, UISearchBarDele
             let requestAction = UIAlertAction(title: "Send request", style: .Default, handler: sendRequestActionHandler)
             alertController.addAction(requestAction)
             self.presentViewController(alertController, animated: true, completion: nil)
-            
 
     }
     

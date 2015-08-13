@@ -88,12 +88,12 @@ class CompassViewController: UIViewController, UITableViewDelegate {
             messageViewController.friend = parseUser
         }
        if (segue.identifier == "openMap") {
-           let mapViewController = segue.destinationViewController as! MapViewController
+           //et mapViewController = segue.destinationViewController as! MapViewController
 //              self.popViewController = PopupViewController(nibName: "PopUpViewController", bundle: nil)
 //            self.popViewController!.title = "This is a popup view"
 //            self.popViewController!.showInView(self.view, withImage: UIImage(named: "typpzDemo"), withMessage: "You just triggered a great popup window", animated: true)
 //            
-        mapViewController.friend = parseUser
+      //  mapViewController.friend = parseUser
         }
     }
     
